@@ -275,3 +275,121 @@ autoimmune disorder	C4553718	Autoimmune Disorder, CTCAE	DISO|Disorders|T033|Find
 recurrent glioblastoma, idh-wildtype	C1514422	Glioblastoma, IDH-Wildtype	DISO|Disorders|T191|Neoplastic Process	20240328	0	
 persistent covid-19	C5433293	post-acute COVID-19 syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
 anemia, diamond-blackfan	C1260899	Anemia, Diamond-Blackfan	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+cml	0	0	0	20260120	0	
+pd-1	0	0	0	20260120	0	
+circulating neoplasm cells	0	0	0	20260120	0	
+chf	0	0	0	20260120	0	
+itp	0	0	0	20260120	0	
+no training	0	0	0	20260120	0	
+cardiac operative surgical proceduress	C0018821	Cardiac Surgery procedures	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
+heartburn	C0018834	Heartburn	DISO|Disorders|T184|Sign or Symptom	20260120	0	
+chronic myeloid leukemia	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia (cml)	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+myeloid leukemia, chronic	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukaemia	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+leukemia, chronic myeloid	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia, bcr-abl1 positive	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia in chronic phase	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia - accelerated phase	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia, bcr/abl-positive	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+leukemia, myeloid, chronic(cml)	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia, blast crisis	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+recurrent chronic myeloid leukemia, bcr-abl1 positive	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+cml,blast phase	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia, philadelphia chromosome negative, bcr-abl1 positive	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+cml chronic phase, accelerated phase, or blast crisis	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia (cml-bp)	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+cml in chronic phase	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+leukemia, myeloid, chronic-phase (cml-cp)	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia (cml) with philadelphia chromosome-positive (ph )	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia or ph positive all	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+cml, cml-cp,mmr,tki	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia (for part b and c)	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+advanced cml	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia - chronic phase	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia patients	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia accelerated phase (cml-ap, ph )	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia blast crisis (cml-bc, ph )	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+gene expression profiles in cml non-responders	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+cml-cp; mutation;suboptimal response or failure in tki	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+blastic transformation of chronic myeloid leukemia	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia with t315i mutation	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+advanced chronic myeloid leukemia	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+cml chronic phase	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+cml accelerated phase	C0023474	Leukemia, Myeloid, Chronic-Phase	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+hdl	C0023821	High Density Lipoproteins	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T123|Biologically Active Substance	20260120	0	
+hdl-c	C0023821	High Density Lipoproteins	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T123|Biologically Active Substance	20260120	0	
+cholesterol (total and hdl)	C0023821	High Density Lipoproteins	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T123|Biologically Active Substance	20260120	0	
+hr vaiability, aerobic physical fitness,blood pressure, blood sugar level, blood hdl, ldl	C0023821	High Density Lipoproteins	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T123|Biologically Active Substance	20260120	0	
+hdl level	C0023821	High Density Lipoproteins	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T123|Biologically Active Substance	20260120	0	
+tg/hdl-c ratio	C0023821	High Density Lipoproteins	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T123|Biologically Active Substance	20260120	0	
+ocd	C0028768	Obsessive-Compulsive Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20260120	0	
+schizophrenia ocd	C0028768	Obsessive-Compulsive Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20260120	0	
+pediatric ocd	C0028768	Obsessive-Compulsive Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20260120	0	
+patient diagnosed with ocd and resistant to ssri treatment	C0028768	Obsessive-Compulsive Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20260120	0	
+comorbid post-traumatic stress disorder and ocd	C0028768	Obsessive-Compulsive Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20260120	0	
+pleural effusion	C0032227	Pleural effusion (disorder)	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+anal fistula	C0205929	Anal Fistula	DISO|Disorders|T020|Acquired Abnormality	20260120	0	
+skin condition	C0037274	Dermatologic disorders	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+gynecologic operative surgical proceduress	C0038902	Gynecologic Surgical Procedures	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
+neurofibromatosis	C0162678	Neurofibromatoses	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+pancreatic polypeptide neoplasm	C0030297	Pancreatic Neoplasm	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+third molar extraction	C0204147	Extraction of wisdom tooth	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
+acute st segment elevation heart attack	C0155626	Acute myocardial infarction	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+metastatic gastrointestinal carcinoid neoplasm	C0220620	Gastrointestinal Carcinoid Tumor	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+atypical teratoid/rhabdoid neoplasm	C0039538	Teratoma	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+mental health issue	C1446377	Mental health problem	DISO|Disorders|T033|Finding	20260120	0	
+hematologic malignancy	C0376545	Hematologic Neoplasms	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+covid-19 pandemic	C5203670	COVID-19	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+coronary arterial disease (cad)	C1956346	Coronary Artery Disease	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+vaping	C4083280	Vaping	ACTI|Activities & Behaviors|T055|Individual Behavior	20260120	0	
+chemotherapeutic radiology procedure	C0344093	Interventional Radiology Procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
+robotic operative surgical proceduress	C3850136	Robotic Surgical Procedures	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
+unrecognized condition	C0679837	underdiagnosis	DISO|Disorders|T033|Finding	20260120	0	
+growth and development	C1457898	Growth & development aspects	DISO|Disorders|T033|Finding	20260120	0	
+no condition	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+nsclc stage iiib	C0278984	Non-small cell lung cancer stage IIIB	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+her-2 protein overexpression	C3824899	HER-2 protein	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T126|Enzyme%CHEM|Chemicals & Drugs|T192|Receptor	20260120	0	
+chronic hepatitis c virus infection	C0524910	Hepatitis C, Chronic	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+minimally invasive operative surgical proceduress	C0282624	Minimally Invasive Surgical Procedures	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
+hpv vaccination	C1512511	Human Papilloma Virus Vaccine	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T129|Immunologic Factor%CHEM|Chemicals & Drugs|T121|Pharmacologic Substance	20260120	0	
+abdominal wall hernia	C1442978	Hernia of abdominal wall	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+hiv/aids and infections	C1456617	HIV/AIDS and Infections	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+concurrent chemotherapeutic radiology procedure	C0344093	Interventional Radiology Procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
+postoperative urinary retention	C0341745	Postoperative retention of urine	DISO|Disorders|T046|Pathologic Function	20260120	0	
+twin pregnancy with antenatal problem	C0404851	Twin pregnancy with antenatal problem	DISO|Disorders|T046|Pathologic Function	20260120	0	
+transfusional iron overload	C0282193	Iron Overload	DISO|Disorders|T047|Disease or Syndrome	20260120	0	
+cardiovascular disease risk	C1113685	cardiovascular disorder risk	DISO|Disorders|T033|Finding	20260120	0	
+no conditions	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no specific conditions	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no condition, basic science	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no specific condition targeted	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no applicable condition; study of physiologic monitor alarms	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+cml - philadelphia chromosome	C0279543	Philadelphia chromosome positive chronic myelogenous leukemia	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+no condition is the focus of the study	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no condition, healthy individuals	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no specific conditions are being examined	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no conditions for this study all male patients 18 years of age or older were administered the luts, mshq, and patient demographics questionnaire	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no specific conditions under study primary focus adult subjects who require picc placement	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+gist and cml	C0238198	Gastrointestinal Stromal Tumors	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+no specific conditions requires	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+philidelphia positive chronic myeloid leukaemia	C0279543	Philadelphia chromosome positive chronic myelogenous leukemia	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+no specific condition	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no condition, healthy females	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no previous chemotherapy for metastatic esophagogastric cancer	C3842363	No malignancy	DISO|Disorders|T033|Finding	20260120	0	
+no medical condition	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no condition being studied; tdcs only in healthy subjects	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no condition, community-dwelling 80 older adults	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+chronic myeloid leukemia (cml) philadelphia chromosome positive	C0279543	Philadelphia chromosome positive chronic myelogenous leukemia	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia, in relapse	C1532368	Relapsing chronic myeloid leukemia	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+no message exposure (control condition)	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no specific condition feasibility of mobile app	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no surgery on the spine or the hamstring	C3846422	No surgical procedure	DISO|Disorders|T033|Finding	20260120	0	
+no condition  to establish reference serum serotonin levels in a control cohort	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no condition is studied	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no other illness or disorder	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no conditions, aged 4549	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+no conditions, aged 2064	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
+supportive care	C0344211	Supportive care	PROC|Procedures|T058|Health Care Activity	20260120	0	
+social interaction	C0037420	Social Interaction	ACTI|Activities & Behaviors|T054|Social Behavior	20260120	0	
+other operative surgical proceduress	C0543467	Operative Surgical Procedures	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
