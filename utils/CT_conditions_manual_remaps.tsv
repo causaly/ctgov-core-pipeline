@@ -1,0 +1,277 @@
+Condition_request	Condition_Cui	Condition_Concept	Condition_CAT	Timestamp	Ignore	comment
+therapeutic radiology procedure	C1522449	Therapeutic radiology procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+saline	C0036082	Saline Solution	CHEM|Chemicals & Drugs|T197|Inorganic Chemical%CHEM|Chemicals & Drugs|T121|Pharmacologic Substance	2019	1	Ignored since T197 & T121 are not in categories whitelist for conditions
+intensity-modulated therapeutic radiology procedure	C1522449	Therapeutic radiology procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+3-dimensional conformal therapeutic radiology procedure	C1522449	Therapeutic radiology procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+physical activity	C0026606	Physical activity	ACTI|Activities & Behaviors|T056|Daily or Recreational Activity	2019	1	T056 not in categories whitelist. Ignored
+exercise training	C1522704	Exercise Pain Management	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+internal therapeutic radiology procedure	C1522449	Therapeutic radiology procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+hypofractionated therapeutic radiology procedure	C1522449	Therapeutic radiology procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+proton beam therapeutic radiology procedure	C1522449	Therapeutic radiology procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+intensity modulated therapeutic radiology procedure	C1522449	Therapeutic radiology procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+physical exercise	C1522704	Exercise Pain Management	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+mindfulness-based stress reduction	C3542996	Mindfulness	PHYS|Physiology|T041|Mental Process	2019	1	T041 not in categories whitelist. Ignored
+walking	C0080331	Walking (activity)	ACTI|Activities & Behaviors|T056|Daily or Recreational Activity	2019	1	T056 not in categories whitelist. Ignored
+mindfulness	C3542996	Mindfulness	PHYS|Physiology|T041|Mental Process	2019	1	T041 not in categories whitelist. Ignored
+mesenchymal stem cells	C1257990	Mesenchymal Stem Cell Transplantation	PROC|Procedures|T061|Therapeutic or Preventive Procedure	2019	0	
+0 9% saline	C0036082	Saline Solution	CHEM|Chemicals & Drugs|T197|Inorganic Chemical%CHEM|Chemicals & Drugs|T121|Pharmacologic Substance	2019	1	Ignored since T197 & T121 are not in categories whitelist for conditions
+mindfulness based stress reduction	C3542996	Mindfulness	PHYS|Physiology|T041|Mental Process	2019	1	T041 not in categories whitelist.  Ignored
+tai chi	C0376403	Tai Ji	ACTI|Activities & Behaviors|T056|Daily or Recreational Activity	2019	1	T056 not in categories whitelist.  Ignored
+ptsd	C0038436	Post-Traumatic Stress Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20221202	0	
+recurrence	C2825055	Recurrence (disease attribute)	DISO|Disorders|T046|Pathologic Function	20221202	0	
+sudden cardiac death	C0085298	Sudden Cardiac Death	DISO|Disorders|T046|Pathologic Function	20221202	0	
+death	C4552775	Death NOS, CTCAE	DISO|Disorders|T033|Finding	20221202	0	
+frail elderly syndrome	C4060585	Frail elderly syndrome	DISO|Disorders|T047|Disease or Syndrome	20221202	0	
+relapse	C0035020	Relapse	PHEN|Phenomena|T067|Phenomenon or Process	20221202	1	Discarded since T067 is not in our concepts whitelist
+fetal growth retardation	C0015934	Fetal Growth Retardation	DISO|Disorders|T046|Pathologic Function	20221202	0	
+intensive care syndrome	C1168150	Intensive care unit syndrome	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20221202	0	
+intrauterine growth restriction	C0015934	Fetal Growth Retardation	DISO|Disorders|T046|Pathologic Function	20221202	0	
+parkinson	C0030567	Parkinson Disease	DISO|Disorders|T047|Disease or Syndrome	20221202	0	
+fetal growth restriction	C0015934	Fetal Growth Retardation	DISO|Disorders|T046|Pathologic Function	20221202	0	
+compliance	0	0	0	20221202	0	C3714738 was retired as of the 2021AA version of the UMLS. It was merged into C4054143 (Pulmonary compliance) which is too specific
+0	0	0	0	20221202	0	
+systemic inflammation	C0021368	Inflammation	DISO|Disorders|T046|Pathologic Function	20221202	0	
+aspirin	0	0	0	20221202	0	
+iugr	C0015934	Fetal Growth Retardation	DISO|Disorders|T046|Pathologic Function	20221202	0	
+psa	C0138741	Prostate-Specific Antigen	CHEM|Chemicals & Drugs|T116|Amino Acid, Peptide, or Protein%CHEM|Chemicals & Drugs|T126|Enzyme%CHEM|Chemicals & Drugs|T129|Immunologic Factor 	20221202	0	
+chronic	0	0	0	20221202	0	
+acute	0	0	0	20221202	0	
+abdominal sepsis	C1141926	Abdominal sepsis	DISO|Disorders|T047|Disease or Syndrome	20221202	0	
+mycobacterium tuberculosis	C0026926	Mycobacterium tuberculosis	LIVB|Living Beings|T007|Bacterium	20221202	0	
+symptoms	0	0	0	20221202	0	
+syndrome	0	0	0	20221202	0	
+normal	0	0	0	20221202	0	
+recurrent	0	0	0	20221202	0	
+intra-uterine growth restriction	C0015934	Fetal Growth Retardation	DISO|Disorders|T046|Pathologic Function	20221202	0	
+intrauterine fetal growth restriction	C0015934	Fetal Growth Retardation	DISO|Disorders|T046|Pathologic Function	20221202	0	
+normal physiology	0	0	0	20221202	0	
+severe acute respiratory syndrome coronavirus 2	C1175743	SARS coronavirus	LIVB|Living Beings|T005|Virus	20221202	0	
+chronic myelogenous leukemia, bcr-abl1 positive	C1292771	Chronic Myelogenous Leukemia, BCR-ABL1 Positive	DISO|Disorders|T191|Neoplastic Process	20221202	0	
+anterior resection syndrome	C4524073	Low Anterior Resection Syndrome	DISO|Disorders|T047|Disease or Syndrome	20221202	0	
+bloodstream infection	C2316160	Infection of bloodstream	DISO|Disorders|T046|Pathologic Function	20221202	0	
+treatment outcome	0	0	0	20221202	0	
+sudden cardiac arrest	C1720824	Sudden Cardiac Arrest	DISO|Disorders|T046|Pathologic Function	20221202	0	
+exercise capacity	C5212823	Exercise capacity	CONC|Concepts & Ideas|T081|Quantitative Concept	20221202	1	T081 not in whitelisted categories. Ignored
+non-muscle invasive bladder cancer	C1336527	Carcinoma of urinary bladder, superficia	DISO|Disorders|T191|Neoplastic Process	20221202	0	
+aki	C0022660	Kidney Failure, Acute	DISO|Disorders|T047|Disease or Syndrome	20221202	0	
+fetal growth restriction	C0015934	Fetal Growth Retardation	DISO|Disorders|T046|Pathologic Function	20221202	0	
+compliance	0	0	0	20221202	0	
+glycemic response	0	0	0	20221202	0	
+hypereosinophilic syndrome	 C1540912	Hypereosinophilic syndrome	DISO|Disorders|T047|Disease or Syndrome	20221202	0	
+healthy infants	0	0	0	20221202	0	
+chronic wounds	C0043250	Injury wounds	DISO|Disorders|T037|Injury or Poisoning	20221202	0	
+benign prostatic hypertrophy	C1704272	Benign Prostatic Hyperplasia	DISO|Disorders|T046|Pathologic Function	20221202	0	changed since C0005001 does not exist anymore. C0005001 was retired as of the 2020AA version of the UMLS. It was merged into C1704272.
+her-2 positive breast cancer	C1960398	HER2-positive carcinoma of breast	DISO|Disorders|T191|Neoplastic Process	20221202	0	Changed. C1699634 was retired as of the 2020AA version of the UMLS. It was merged into C1960398.
+opioid overdose	C0579142	Opiate Overdose	DISO|Disorders|T037|Injury or Poisoning	20221202	0	
+progression	0	0	0	20221202	0	Changed. C4735570 was retired as of the 2020AA version of the UMLS. It was merged into C0579142.
+intensive care	C5400924	Intensive Care Stay Required	DISO|Disorders|T033|Finding	20240328	0	
+postoperative delirium	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+post-operative delirium	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+delirium, postoperative	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+post operative delirium	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+postoperative delirium (pod)	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+postoperative delirium in elder patients after spine surgery	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+postoperative delirium after on-pump cardiac surgery	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+postoperative delirium after living donor renal transplantation	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+identify postoperative delirium using exhaled gas patterns	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+delirium, post-operative	C4721772	Postoperative delirium	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+fall	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+balance, falls	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+the fall rates	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+fall risk factors	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+gait variability; elders; fall; re-education	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+vision, balance and falls in older adults	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+identification of home fall hazards	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+paradoxical fall in maximum expiratory flows	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+persons who have experienced a sudden uncontrolled fall in the absence of outside factors in the 6 preceding the consultation	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+fall safety	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+in-hospital falls	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+falls, balance self-confidence	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+risk of fall	C4553726	Fall, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+prostatic hyperplasia	C2937421	Prostatic Hyperplasia	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+prostate hyperplasia	C2937421	Prostatic Hyperplasia	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+prostatic hyperplasia with urinary obstruction	C2937421	Prostatic Hyperplasia	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+safety and efficacy of tadalafil vs tadalafil with sildosin in the management of moderately and severely symptomatic patients of prostatic hyperplasia	C2937421	Prostatic Hyperplasia	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+cervical intraepithelial neoplasia	C0206708	Cervical Intraepithelial Neoplasia	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+grade cervical intraepithelial neoplasia	C0206708	Cervical Intraepithelial Neoplasia	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+grade cervical intra-epithelial neoplasia	C0206708	Cervical Intraepithelial Neoplasia	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+cervical intraepithelial neoplasia (cin)	C0206708	Cervical Intraepithelial Neoplasia	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+intraepithelial neoplasm, cervical	C0206708	Cervical Intraepithelial Neoplasia	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+intraepithelial neoplasia, cervical	C0206708	Cervical Intraepithelial Neoplasia	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+primary peritoneal carcinoma	C1514428	Primary peritoneal carcinoma	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+primary peritoneal carcinoma stage iv	C1514428	Primary peritoneal carcinoma	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+operative surgical procedures, unspecified	C0543467	Operative Surgical Procedures	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+urinary retention	C0080274	Urinary Retention	DISO|Disorders|T033|Finding	20240328	0	
+retention	C0080274	Urinary Retention	DISO|Disorders|T033|Finding	20240328	0	
+retention, urinary	C0080274	Urinary Retention	DISO|Disorders|T033|Finding	20240328	0	
+non obstructive urinary retention	C0080274	Urinary Retention	DISO|Disorders|T033|Finding	20240328	0	
+bladder retention	C0080274	Urinary Retention	DISO|Disorders|T033|Finding	20240328	0	
+therapeutic radiology procedure side effect	0	0	0	20240328	0	
+diet	C1519433	Special Diet Therapy	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+kidney calculi	C0392525	Nephrolithiasis	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+stone;renal	C0392525	Nephrolithiasis	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+preterm	C0151526	Premature Birth	DISO|Disorders|T046|Pathologic Function	20240328	0	
+pre-term	C0151526	Premature Birth	DISO|Disorders|T046|Pathologic Function	20240328	0	
+preterm neonates	C0151526	Premature Birth	DISO|Disorders|T046|Pathologic Function	20240328	0	
+preterm children	C0151526	Premature Birth	DISO|Disorders|T046|Pathologic Function	20240328	0	
+preterm newborn	C0151526	Premature Birth	DISO|Disorders|T046|Pathologic Function	20240328	0	
+preterm neonate	C0151526	Premature Birth	DISO|Disorders|T046|Pathologic Function	20240328	0	
+preterms	C0151526	Premature Birth	DISO|Disorders|T046|Pathologic Function	20240328	0	
+well-being, psychological	C0424578	Psychological Well Being	DISO|Disorders|T033|Finding	20240328	0	
+non-valvular atrial fibrillation	C0004238	Atrial Fibrillation	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+non-valvular atrial fibrillation (nvaf)	C0004238	Atrial Fibrillation	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+non valvular atrial fibrillation (nv af)	C0004238	Atrial Fibrillation	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+non valvular atrial fibrillation	C0004238	Atrial Fibrillation	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+mdd	C1269683	Major Depressive Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+thoracic	0	0	0	20240328	0	
+respiratory distress syndrome in premature infant	C0035220	Respiratory Distress Syndrome, Newborn	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+cad	C1956346	Coronary Artery Disease	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+sepsis syndrome	C0036690	Septicemia	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+angiogenesis	C1519670	Tumor Angiogenesis	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+bicuspid aortic valve	C0149630	Bicuspid aortic valve	DISO|Disorders|T019|Congenital Abnormality	20240328	0	
+aortic valve, bicuspid	C0149630	Bicuspid aortic valve	DISO|Disorders|T019|Congenital Abnormality	20240328	0	
+bicuspid aortic valve with coarctation	C0149630	Bicuspid aortic valve	DISO|Disorders|T019|Congenital Abnormality	20240328	0	
+bicuspid aortic valve (bav)	C0149630	Bicuspid aortic valve	DISO|Disorders|T019|Congenital Abnormality	20240328	0	
+resilience, psychological	C0683253	Resilience, Psychological	ACTI|Activities & Behaviors|T055|Individual Behavior	20240328	0	
+psychological resilience	C0683253	Resilience, Psychological	ACTI|Activities & Behaviors|T055|Individual Behavior	20240328	0	
+resilience,psychological	C0683253	Resilience, Psychological	ACTI|Activities & Behaviors|T055|Individual Behavior	20240328	0	
+adverse effect of therapeutic radiology procedure	0	0	0	20240328	0	
+moderate or severe submental fullness	0	0	0	20240328	0	
+food effect	0	0	0	20240328	0	
+dermatology/skin - other	0	0	0	20240328	0	
+other	0	0	0	20240328	0	
+positive affect	0	0	0	20240328	0	
+diastolic function	0	0	0	20240328	0	
+mitochondrial function	0	0	0	20240328	0	
+china	0	0	0	20240328	0	
+brain and nervous system	0	0	0	20240328	0	
+intestinal health	0	0	0	20240328	0	
+skin reactions secondary to therapeutic radiology procedure	0	0	0	20240328	0	
+sms	0	0	0	20240328	0	
+therapeutic radiology procedure, intensity-modulated	0	0	0	20240328	0	
+other disease	0	0	0	20240328	0	
+beta-cell function	0	0	0	20240328	0	
+oncology [see also, affected system]	0	0	0	20240328	0	
+psychiatric emergency	0	0	0	20240328	0	
+psychiatric health	0	0	0	20240328	0	
+ais	0	0	0	20240328	0	
+crp	0	0	0	20240328	0	
+pca	0	0	0	20240328	0	
+ctx	0	0	0	20240328	0	
+arm	0	0	0	20240328	0	
+lower limb amputation above knee (injury)	C2199746	amputation of lower limb above knee (diagnosis)	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
+lower limb amputation below knee (injury)	C2199752	amputation of lower limb below knee (diagnosis)	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
+high-intensity interval training	C4277545	High-Intensity Interval Training	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+central venous catheter	C0398275	Central venous cannula insertion	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+diamond-blackfan blood anemia	C1260899	Anemia, Diamond-Blackfan	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+locally advanced	C0677984	Locally Advanced Malignant Neoplasm	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+disease progression	C0242656	Disease Progression	DISO|Disorders|T046|Pathologic Function	20240328	0	
+tmd	C0039494	Temporomandibular Joint Disorders	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+thoracic paravertebral block	C4518309	Local anesthetic thoracic paravertebral nerve block	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+toxicity due to therapeutic radiology procedure	C1302210	Toxicity due to radiotherapy	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+neoplasm lysis syndrome	C0041364	Tumor Lysis Syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+bmd	C0005938	Bone Density	PHYS|Physiology|T201|Clinical Attribute	20240328	0	
+pics	C4551334	Post intensive care unit syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+progression, disease	C0242656	Disease Progression	DISO|Disorders|T046|Pathologic Function	20240328	0	
+skin rash	C5779628	Skin rash	DISO|Disorders|T184|Sign or Symptom	20240328	0	
+brain injury traumatic severe	C0876926	Traumatic Brain Injury	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
+rash	C5779628	Skin rash	DISO|Disorders|T184|Sign or Symptom	20240328	0	
+brain neoplasm - metastatic	C0220650	Metastatic malignant neoplasm to brain	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+acs	C0948089	Acute Coronary Syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+stage iii kidney wilms neoplasm	C0278713	Stage III Kidney Wilms Tumor	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+allograft rejection	C0018129	Graft Rejection	PHYS|Physiology|T042|Organ or Tissue Function	20240328	0	
+inadequate glycaemic control	C0342299	Poor glycemic control	DISO|Disorders|T046|Pathologic Function	20240328	0	
+pphn	C1135361	Persistent pulmonary hypertension	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+ttn	C0158940	Transitory tachypnea of newborn	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+pots	C1299624	Postural Orthostatic Tachycardia Syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+amn	C1527231	Adrenomyeloneuropathy	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+recurrent kidney wilms neoplasm	C0278716	Recurrent Kidney Wilms Tumor	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+idiopathic granulomatous mastitis	C4552494	Idiopathic granulomatous mastitis	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+mds/mpn	C1301355	Myelodysplastic-Myeloproliferative Diseases	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+lead exposure	C2220426	Exposure to lead	DISO|Disorders|T033|Finding	20240328	0	
+stage ii kidney wilms neoplasm	C0278712	Stage II Kidney Wilms Tumor	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+tobacco abuse smoke	C0453996	Tobacco smoking behavior	ACTI|Activities & Behaviors|T055|Individual Behavior	20240328	0	
+thoracic fracture	C0347780	Fracture of thoracic spine	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
+spd	C0036363	Schizotypal Personality Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+brain injury traumatic moderate	C0876926	Traumatic Brain Injury	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
+blood anemia associated with chronic kidney disease	C1561828	Anemia in chronic kidney disease	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+tgct	C1266168	Malignant tenosynovial giant cell tumor	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+lars - anterior resection syndrome	C4524073	Low Anterior Resection Syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+undifferentiated pleomorphic sarcoma	C0279546	Adult Undifferentiated Pleomorphic Sarcoma	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+reflux	C4317146	Acid reflux	DISO|Disorders|T033|Finding	20240328	0	
+colic	C0266836	Infantile Colic	DISO|Disorders|T184|Sign or Symptom	20240328	0	
+cll/sll	C1302547	Chronic Lymphocytic Leukemia/Small Lymphocytic Lymphoma	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+metastatic	C2939420	Metastatic Neoplasm	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+skin infection	C0037278	Skin Diseases, Infectious	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+pain control	C1304888	Pain control	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+hookworm infection	C0019911	Hookworm Infections	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+degenerative scoliosis	C4280905	Degenerative scoliosis	DISO|Disorders|T020|Acquired Abnormality	20240328	0	
+gastrinoma	C0017150	Gastrinoma	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+diamond blackfan blood anemia	C1260899	Anemia, Diamond-Blackfan	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+refractory blood anemia with ringed sideroblasts	C1264195	Refractory anemia with ringed sideroblasts	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+iris melanoma	C0346373	Malignant melanoma of iris	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+choroidal melanoma	C0346388	Malignant melanoma of choroid	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+medication administered in error	C1299649	Medication administered in error	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
+refractory angina pectoris	C0741032	Refractory angina	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+fsgs	C0017668	Focal glomerulosclerosis	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+chronic traumatic encephalopathy	C4082769	Chronic Traumatic Encephalopathy	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+salt; excess	C5238693	Excessive Daily Salt Intake	DISO|Disorders|T033|Finding	20240328	0	
+systemic vasculitis	C0264939	Systemic Vasculitis	DISO|Disorders|T033|Finding	20240328	0	
+observation of neuromuscular block	C0700323	Neuromuscular block, function	DISO|Disorders|T033|Finding	20240328	0	
+temporal arteritis	C1956391	Temporal Arteritis	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+ad	C1843013	Alzheimer disease, familial, type 3	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+sensory deficit	C0748618	Sensory deficit	DISO|Disorders|T033|Finding	20240328	0	
+intensive care neurological disorder	C1301829	Intensive care neurological disorder	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+gvhd,acute	C0856825	Acute GVH disease	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+nec	C4082937	Necrotizing enterocolitis in fetus OR newborn	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+sporadic inclusion body myositis	C0751713	Inclusion Body Myopathy, Sporadic	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+ureteropelvic junction obstruction	C0521619	Obstruction of pelviureteric junction	DISO|Disorders|T190|Anatomical Abnormality	20240328	0	
+papillomavirus infection	C0343641	Human papilloma virus infection	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+cin 2/3	C2986622	Cervical Intraepithelial Neoplasia Grade 2/3	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+relational problems	C0425168	Relationship problems (finding)	DISO|Disorders|T033|Finding	20240328	0	
+functional neurological symptom disorder	C4543816	Dissociative neurological symptom disorder (disorder)	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+autoinflammatory disease	C3890737	Autoinflammatory Syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+smokeless tobacco	C4527315	Smokeless Tobacco Use	ACTI|Activities & Behaviors|T055|Individual Behavior	20240328	0	
+pleomorphic xanthoastrocytoma	C0334586	Pleomorphic Xanthoastrocytoma	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+philadelphia-positive all	C2347507	Childhood B Acute Lymphoblastic Leukemia with t(9;22)(q34.1;q11.2); BCR-ABL1	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+autologous stem cell transplant	C1831743	Autologous Hematopoietic Stem Cell Transplantation	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+chronic limb ischemia	C2945695	Limb ischemia	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+jia	C3495559	Juvenile arthritis	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+herpes simplex virus	C0019348	Herpes Simplex Infections	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+penetrating ulcer	C1265811	Penetrating ulcer	DISO|Disorders|T046|Pathologic Function	20240328	0	
+overhydration	C0392689	Overhydration	DISO|Disorders|T046|Pathologic Function	20240328	0	
+upper limb amputation below elbow (injury)	C2188266	amputation of upper limb below elbow (diagnosis)	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
+p53 mutation	C3897380	TP53 gene mutation	DISO|Disorders|T049|Cell or Molecular Dysfunction	20240328	0	
+medical nutrition therapy	C1257928	Medical Nutrition Therapy	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+stage ii colorectal cancer	C0677948	Colorectal cancer stage II	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+asymptomatic	C5239552	Asymptomatic Presentation	DISO|Disorders|T033|Finding	20240328	0	
+reflux disease	C0017168	Gastroesophageal reflux disease	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+pacemaker implantation	C3275122	Pacemaker Procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+cancer-related cognitive difficulties	C5206799	Cancer-related Cognitive Dysfunction	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+primary amyloidosis of light chain type	C0342606	Primary amyloidosis of light chain type	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+hemifacial microsomia	C3495417	Hemifacial microsomia	DISO|Disorders|T019|Congenital Abnormality	20240328	0	
+hoarding	C0424337	Hoarding	ACTI|Activities & Behaviors|T055|Individual Behavior	20240328	0	
+resistant cancer	C0677936	Refractory cancer	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+idh1 mutation	C3898827	IDH1 gene mutation	DISO|Disorders|T049|Cell or Molecular Dysfunction	20240328	0	
+idiopathic granulomatous mastitis	C4552494	Idiopathic granulomatous mastitis	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+emergency general surgery	C4264510	Emergency surgery	DISO|Disorders|T033|Finding	20240328	0	
+richter transformation	C0349631	Richter's syndrome	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+vats	C0752151	Thoracic Surgery, Video-Assisted	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+infection, soft tissue	C4553661	Soft Tissue Infection, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+swimming induced pulmonary edema (sipe)	C4553407	Pulmonary Edema, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+extraesophageal reflux	C4317146	Acid reflux	DISO|Disorders|T033|Finding	20240328	0	
+catastrophization	C0563150	Catastrophization	DISO|Disorders|T033|Finding	20240328	0	
+grade b-cell lymphoma with myc, bcl2, and bcl6 rearrangements	C0079731	B-Cell Lymphomas	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+moderate varus, valgus or flexion deformities	C0042282	Valgus deformity	DISO|Disorders|T033|Finding	20240328	0	
+adolescent scoliosis	C2895223	Juvenile and adolescent idiopathic scoliosis	DISO|Disorders|T190|Anatomical Abnormality	20240328	0	
+palliative	C0030231	Palliative Care	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+advanced primary liver cancer	C0024620	Primary Malignant Liver Neoplasm	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+hsct	C0472699	Hemopoietic stem cell transplant	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+glioblastoma, idh-mutant	C4518228	Glioblastoma isocitrate dehydrogenase 1 mutation	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+hepato-renal syndrome	C0019212	Hepatorenal Syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+thoracic anesthesia	C0002903	Anesthesia procedures	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+hypofractionation	C1831786	Hypofractionated radiation therapy	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20240328	0	
+autoimmune disorder	C4553718	Autoimmune Disorder, CTCAE	DISO|Disorders|T033|Finding	20240328	0	
+recurrent glioblastoma, idh-wildtype	C1514422	Glioblastoma, IDH-Wildtype	DISO|Disorders|T191|Neoplastic Process	20240328	0	
+persistent covid-19	C5433293	post-acute COVID-19 syndrome	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
+anemia, diamond-blackfan	C1260899	Anemia, Diamond-Blackfan	DISO|Disorders|T047|Disease or Syndrome	20240328	0	

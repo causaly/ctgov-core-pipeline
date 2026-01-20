@@ -1,0 +1,414 @@
+{
+    "rules": [
+
+        {
+            "xpath": ".//Struct[@Name='ProtocolSection']/Struct[@Name='IdentificationModule']/Field[@Name='NCTId']",
+            "field": "nct_id"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ProtocolSection']/Struct[@Name='IdentificationModule']/List[@Name='NCTIdAliasList']/Field[@Name='NCTIdAlias']",
+            "field": "nct_id_alias"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ProtocolSection']/Struct[@Name='IdentificationModule']/Struct[@Name='OrgStudyIdInfo']/Field[@Name='OrgStudyId']",
+            "field": "org_study_id"
+        },
+
+         {
+            "xpath": ".//Struct[@Name='ProtocolSection']/Struct[@Name='IdentificationModule']/List[@Name='SecondaryIdInfoList']/Struct[@Name='SecondaryIdInfo']/Field[@Name='SecondaryId']",
+            "field": "secondary_id"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ProtocolSection']/Struct[@Name='IdentificationModule']/Field[@Name='BriefTitle']",
+            "field": "brief_title"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ProtocolSection']/Struct[@Name='IdentificationModule']/Field[@Name='OfficialTitle']",
+            "field": "official_title"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ProtocolSection']/Struct[@Name='DescriptionModule']/Field[@Name='BriefSummary']",
+            "field": "brief_summary"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ProtocolSection']/Struct[@Name='DescriptionModule']/Field[@Name='DetailedDescription']",
+            "field": "detailed_description"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ConditionsModule']/List[@Name='ConditionList']Field[@Name='Condition']",
+            "field": "conditions"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ConditionBrowseModule']/List[@Name='ConditionMeshList']Struct[@Name='ConditionMesh']/Field[@Name='ConditionMeshTerm']",
+            "field": "condition_mesh_terms"
+        },
+
+        {
+            "xpath": ".//List[@Name='ConditionAncestorList']/Struct[@Name='ConditionAncestor']Field[@Name='ConditionAncestorTerm']",
+            "field": "relevant_condition_mesh_terms"
+        },
+
+
+        {
+            "xpath": ".//List[@Name='InterventionList']/Struct[@Name='Intervention']",
+            "plural": true,
+            "field": "interventions",
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='InterventionName']",
+                    "field": "intervention_name"
+                },
+
+                {
+                    "xpath": "./Field[@Name='InterventionType']",
+                    "field": "intervention_type"
+                },
+
+                {
+                    "xpath": "./Field[@Name='InterventionDescription']",
+                    "field": "intervention_description"
+                },
+
+                {
+                    "xpath": "./List[@Name='InterventionArmGroupLabelList']/Field[@Name='InterventionArmGroupLabel']",
+                    "field": "intervention_arm_groups"
+
+                },
+
+                {
+                    "xpath": "./List[@Name='InterventionOtherNameList']/Field[@Name='InterventionOtherName']",
+                    "field": "intervention_other_names"
+                }
+            ]},
+
+        {
+            "xpath": ".//Struct[@Name='InterventionBrowseModule']/List[@Name='InterventionMeshList']Struct[@Name='InterventionMesh']/Field[@Name='InterventionMeshTerm']",
+            "field": "intervention_mesh_terms"
+        },
+
+        {
+            "xpath": ".//List[@Name='InterventionAncestorList']/Struct[@Name='InterventionAncestor']Field[@Name='InterventionAncestorTerm']",
+            "field": "relevant_intervention_mesh_terms"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='OutcomesModule']/List[@Name='PrimaryOutcomeList']/Struct[@Name='PrimaryOutcome']",
+            "plural": true,
+            "field": "primary_outcomes",
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='PrimaryOutcomeMeasure']",
+                    "field": "outcome_measure"
+                },
+                {
+                    "xpath": "./Field[@Name='PrimaryOutcomeTimeFrame']",
+                    "field": "outcome_time_frame"
+                },
+
+                {
+                    "xpath": "./Field[@Name='PrimaryOutcomeDescription']",
+                    "field": "outcome_description"
+                }
+            ]},
+
+        {
+            "xpath": ".//Struct[@Name='OutcomesModule']/List[@Name='SecondaryOutcomeList']/Struct[@Name='SecondaryOutcome']",
+            "plural": true,
+            "field": "secondary_outcomes",
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='SecondaryOutcomeMeasure']",
+                    "field": "outcome_measure"
+                },
+                {
+                    "xpath": "./Field[@Name='SecondaryOutcomeTimeFrame']",
+                    "field": "outcome_time_frame"
+                },
+
+                {
+                    "xpath": "./Field[@Name='SecondaryOutcomeDescription']",
+                    "field": "outcome_description"
+                }
+            ]},
+
+        {
+            "xpath": ".//Struct[@Name='OutcomesModule']/List[@Name='OtherOutcomeList']/Struct[@Name='OtherOutcome']",
+            "plural": true,
+            "field": "other_outcomes",
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='OtherOutcomeMeasure']",
+                    "field": "outcome_measure"
+                },
+                {
+                    "xpath": "./Field[@Name='OtherOutcomeTimeFrame']",
+                    "field": "outcome_time_frame"
+                },
+
+                {
+                    "xpath": "./Field[@Name='OtherOutcomeDescription']",
+                    "field": "outcome_description"
+                }
+            ]},
+
+        {
+            "xpath": ".//Struct[@Name='SponsorCollaboratorsModule']/Struct[@Name='LeadSponsor']",
+            "field": "sponsors",
+            "plural": true,
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='LeadSponsorName']",
+                    "field": "sponsor_name"
+                },
+                {
+                    "xpath": "./Field[@Name='LeadSponsorClass']",
+                    "field": "sponsor_type"
+                }
+                ]
+        },
+
+        {
+            "xpath": ".//Struct[@Name='Organization']",
+            "field": "source",
+            "plural": true,
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='OrgFullName']",
+                    "field": "source_name"
+                },
+                {
+                    "xpath": "./Field[@Name='OrgClass']",
+                    "field": "source_class"
+                }
+                ]
+        },
+
+         {
+            "xpath": ".//List[@Name='LocationList']/Struct[@Name='Location']Field[@Name='LocationCountry']",
+            "field": "location_countries"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='SponsorCollaboratorsModule']/List[@Name='CollaboratorList']/Struct[@Name='Collaborator']",
+            "field": "collaborators",
+            "plural": true,
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='CollaboratorName']",
+                    "field": "collaborator_name"
+                },
+                {
+                    "xpath": "./Field[@Name='CollaboratorClass']",
+                    "field": "collaborator_type"
+                }
+                ]
+        },
+
+        {
+            "xpath": ".//Struct[@Name='EligibilityModule']",
+            "plural": true,
+            "field": "eligibility_criteria",
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='EligibilityCriteria']",
+                    "field": "eligibility_text_description",
+                    "no_sanitize": true
+                },
+
+                {
+                    "xpath": "./Field[@Name='Gender']",
+                    "field": "eligibility_gender"
+                },
+
+                {
+                    "xpath": "./Field[@Name='MinimumAge']",
+                    "field": "eligibility_min_age"
+                },
+
+                {
+                    "xpath": "./Field[@Name='MaximumAge']",
+                    "field": "eligibility_max_age"
+                },
+
+                {
+                    "xpath": "./Field[@Name='HealthyVolunteers']",
+                    "field": "eligibility_healthy_volunteers"
+                }
+
+            ]},
+
+        {
+            "xpath": ".//List[@Name='KeywordList']/Field[@Name='Keyword']",
+            "field": "trial_keywords"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ArmsInterventionsModule']/List[@Name='ArmGroupList']/Struct[@Name='ArmGroup']",
+            "plural": true,
+            "field": "study_arm_groups",
+            "rules": [
+                {
+                    "xpath": "./Field[@Name='ArmGroupLabel']",
+                    "field": "study_arm_group_label"
+                },
+                {
+                    "xpath": "./Field[@Name='ArmGroupType']",
+                    "field": "study_arm_group_type"
+                },
+                {
+                    "xpath": "./Field[@Name='ArmGroupDescription']",
+                    "field": "study_arm_group_description"
+                },
+
+                {
+                    "xpath": "./List[@Name='ArmGroupInterventionList']/Field[@Name='ArmGroupInterventionName']",
+                    "field": "study_arm_group_intervention_name"
+                }
+            ]
+        },
+
+        {
+            "xpath": ".//Struct[@Name='ReferencesModule']/List[@Name='ReferenceList']/Struct[@Name='Reference']",
+            "plural": true,
+            "field": "Reference_articles",
+             "rules": [
+                {
+                    "xpath": "./Field[@Name='ReferencePMID']",
+                    "field": "reference_pmid"
+                },
+                 {
+                     "xpath": "./Field[@Name='ReferenceCitation']",
+                     "field": "reference_citation"
+                 }
+               ]
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Field[@Name='StatusVerifiedDate']",
+            "field": "status_verification_date"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Field[@Name='OverallStatus']",
+            "field": "overall_status"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='ExpandedAccessInfo']/Field[@Name='HasExpandedAccess']",
+            "field": "has_expanded_access"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='StartDateStruct']/Field[@Name='StartDate']",
+            "field": "start_date"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='PrimaryCompletionDateStruct']/Field[@Name='PrimaryCompletionDate']",
+            "field": "primary_completion_date"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='PrimaryCompletionDateStruct']/Field[@Name='PrimaryCompletionDateType']",
+            "field": "primary_completion_date_type"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='CompletionDateStruct']/Field[@Name='CompletionDate']",
+            "field": "completion_date"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='CompletionDateStruct']/Field[@Name='CompletionDateType']",
+            "field": "completion_date_type"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Field[@Name='StudyFirstSubmitDate']",
+            "field": "study_first_submit_date"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Field[@Name='StudyFirstSubmitQCDate']",
+            "field": "study_first_submit_qc_date"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='StudyFirstPostDateStruct']/Field[@Name='StudyFirstPostDate']",
+            "field": "study_first_post_date"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='StudyFirstPostDateStruct']/Field[@Name='StudyFirstPostDateType']",
+            "field": "study_first_post_date_type"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Field[@Name='LastUpdateSubmitDate']",
+            "field": "study_first_update_submit_study"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='LastUpdatePostDateStruct']/Field[@Name='LastUpdatePostDate']",
+            "field": "study_last_update_post_date"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='StatusModule']/Struct[@Name='LastUpdatePostDateStruct']/Field[@Name='LastUpdatePostDateType']",
+            "field": "study_last_update_post_date_type"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/Field[@Name='StudyType']",
+            "field": "study_type"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/List[@Name='PhaseList']/Field[@Name='Phase']",
+            "field": "study_phases"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/Struct[@Name='DesignInfo']/Field[@Name='DesignAllocation']",
+            "field": "study_design_allocation"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/Struct[@Name='DesignInfo']/Field[@Name='DesignInterventionModel']",
+            "field": "study_design_intervention_model"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/Struct[@Name='DesignInfo']/Field[@Name='DesignPrimaryPurpose']",
+            "field": "study_design_primary_purpose"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/Struct[@Name='DesignInfo']/Struct[@Name='DesignMaskingInfo']/Field[@Name='DesignMasking']",
+            "field": "study_design_masking"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/Struct[@Name='DesignInfo']/Struct[@Name='DesignMaskingInfo']/List[@Name='DesignWhoMaskedList']/Field[@Name='DesignWhoMasked']",
+            "field": "study_design_who_masked_list"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/Struct[@Name='EnrollmentInfo']/Field[@Name='EnrollmentCount']",
+            "field": "study_enrollment_count"
+        },
+
+        {
+            "xpath": ".//Struct[@Name='DesignModule']/Struct[@Name='EnrollmentInfo']/Field[@Name='EnrollmentType']",
+            "field": "study_enrollment_type"
+        }
+    ]
+}
