@@ -100,12 +100,12 @@ echo  "Done"
 sleep 10
 
 echo "Start mesh generation for evidence (main) file .."
-python3 CT_09_mesh_generation.py $PWD/Intermediate_steps/CT_${batch_gen}_08.tsv $PWD/Intermediate_steps/CT_${batch_gen}_09.tsv $PWD/cui2mesh_2023AB_merged_2022AA.pkl 2>&1 | tee ${logs_dir}/09.log
+python3 CT_09_mesh_generation.py $PWD/Intermediate_steps/CT_${batch_gen}_08.tsv $PWD/Intermediate_steps/CT_${batch_gen}_09.tsv $PWD/cui2mesh_2025AB_merged_2023AB.pkl 2>&1 | tee ${logs_dir}/09.log
 echo  "Done"
 sleep 10
 
 echo "Start (enhanced) mesh generation for txt files .."
-python3 CT_10_mesh_generation_txt_files.py $PWD/Intermediate_steps/CT_${batch_gen}_08.tsv $PWD/Intermediate_steps/CT_${batch_gen}_10.tsv $PWD/cui2mesh_2023AB_merged_2022AA.pkl 2>&1 | tee ${logs_dir}/10.log
+python3 CT_10_mesh_generation_txt_files.py $PWD/Intermediate_steps/CT_${batch_gen}_08.tsv $PWD/Intermediate_steps/CT_${batch_gen}_10.tsv $PWD/cui2mesh_2025AB_merged_2023AB.pkl 2>&1 | tee ${logs_dir}/10.log
 echo  "Done"
 sleep 10
 

@@ -27,7 +27,7 @@ NGS_SCORE_CONCLUSION_RELATED = 0.1
 
 
 
-dictionaryDir = '/tools/metathesaurus_files/2023AB_data/'
+dictionaryDir = '/tools/metathesaurus_files/2025AB_data/'
 
 
 def load_whitelist():
@@ -337,7 +337,7 @@ def score_conclusion_match(article_conclusion, main_atoms, related_atoms, cause_
 
 print ('Loading UMLS dictionaries...')
 # Entry Terms (Atoms) dictionary - CUI -> [Atom1, Atom2...]
-with open(dictionaryDir + '2023AB_atoms.pkl2', 'rb') as handle:
+with open(dictionaryDir + '2025AB_atoms.pkl2', 'rb') as handle:
     mrconso_concepts = pickle.load(handle)
 
 # Concept Preferred Name dictionary - CUI -> Preferred term
@@ -345,14 +345,14 @@ with open(dictionaryDir + '2023AB_atoms.pkl2', 'rb') as handle:
 #    concepts_preferred = pickle.load(handle)
 
 # PARENTS dictionary from UMLS MRREL.RRF
-with open(dictionaryDir + '2023AB_parents.pkl2', 'rb') as handle:
+with open(dictionaryDir + '2025AB_parents.pkl2', 'rb') as handle:
     parents = pickle.load(handle)
 
 # CHILDREN dictionary from UMLS MRREL.RRF
-with open(dictionaryDir + '2023AB_children.pkl2', 'rb') as handle:
+with open(dictionaryDir + '2025AB_children.pkl2', 'rb') as handle:
     children = pickle.load(handle)
 
-with open(dictionaryDir + '2023AB_cui_to_cat.pkl2', 'rb') as handle:
+with open(dictionaryDir + '2025AB_cui_to_cat.pkl2', 'rb') as handle:
     cui_to_cat = pickle.load(handle)
 
 # Strip the Vocab data from Parents and Children hierarchies at the beginning
