@@ -3,6 +3,12 @@ import sys
 
 mrconso_file = sys.argv[1]
 cui2mesh_out_file = sys.argv[2]
+prev_cui2mesh_file = sys.argv[3]
+cui2mesh_out_file_merged = sys.argv[4]
+
+
+with open(prev_cui2mesh_file, 'rb') as handle:
+    prev_cui2mesh_dict = pickle.load(handle)
 
 mrconso = open(mrconso_file, 'r')
 line_counter = 0
@@ -42,3 +48,16 @@ print("cui2mesh dict size: {}".format(len(cui2mesh_dict)))
 with open(cui2mesh_out_file, "wb") as fh:
     pickle.dump(cui2mesh_dict, fh)
 
+
+# Merge prev_cui2mesh_dict with cui2mesh_dict
+counter = 0
+for cui in prev_cui2mesh_dict:
+    if cui not in cui2mesh_dict:
+        cui2mesh_dict[cui] = prev_cui2mesh_dict[cui]
+        counter += 1
+
+print("Missing CUI-MESH pairs that were in the previous dictionary and are now added: {}".format(counter))
+print("New cui2mesh merged dict size: {}".format(len(cui2mesh_dict)))
+
+with open(cui2mesh_out_file_merged, "wb") as fh:
+    pickle.dump(cui2mesh_dict, fh)
