@@ -3171,7 +3171,7 @@ intraoperative therapeutic radiology procedure (iort)	C0344093	Interventional Ra
 cognitive behavioral intervention	C0009244	Cognitive Therapy	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
 photon therapeutic radiology procedure	C0344093	Interventional Radiology Procedure	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	
 lidocaine-prilocaine cream	C0617623	Lidocaine / Prilocaine	CHEM|Chemicals & Drugs|T121|Pharmacologic Substance	20260120	0	
-verum	C4217559	Verum	LIVB|Living Beings|T204|Eukaryote	20260120	0	
+verum	C1006931	Scalpellidae	LIVB|Living Beings|T204|Eukaryote	20260120	0	originally mapped to C4217559 by QA but that's a deprecated cui in 2025AB
 ultrasound measurement	C0041618	Ultrasonography	PROC|Procedures|T060|Diagnostic Procedure	20260120	0	
 physical exercise training	C0040607	Training Programs	PROC|Procedures|T065|Educational Activity	20260120	0	
 cognitive behavioral treatment	C0009244	Cognitive Therapy	PROC|Procedures|T061|Therapeutic or Preventive Procedure	20260120	0	

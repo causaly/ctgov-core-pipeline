@@ -192,7 +192,7 @@ lead exposure	C2220426	Exposure to lead	DISO|Disorders|T033|Finding	20240328	0
 stage ii kidney wilms neoplasm	C0278712	Stage II Kidney Wilms Tumor	DISO|Disorders|T191|Neoplastic Process	20240328	0	
 tobacco abuse smoke	C0453996	Tobacco smoking behavior	ACTI|Activities & Behaviors|T055|Individual Behavior	20240328	0	
 thoracic fracture	C0347780	Fracture of thoracic spine	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
-spd	C0036363	Schizotypal Personality Disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	
+spd	C1443045	Schizotypal disorder	DISO|Disorders|T048|Mental or Behavioral Dysfunction	20240328	0	Originally mapped to C0036363 from QA but that concept is deprecated in 2025AB
 brain injury traumatic moderate	C0876926	Traumatic Brain Injury	DISO|Disorders|T037|Injury or Poisoning	20240328	0	
 blood anemia associated with chronic kidney disease	C1561828	Anemia in chronic kidney disease	DISO|Disorders|T047|Disease or Syndrome	20240328	0	
 tgct	C1266168	Malignant tenosynovial giant cell tumor	DISO|Disorders|T191|Neoplastic Process	20240328	0	
@@ -381,7 +381,7 @@ no medical condition	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0
 no condition being studied; tdcs only in healthy subjects	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
 no condition, community-dwelling 80 older adults	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
 chronic myeloid leukemia (cml) philadelphia chromosome positive	C0279543	Philadelphia chromosome positive chronic myelogenous leukemia	DISO|Disorders|T191|Neoplastic Process	20260120	0	
-chronic myeloid leukemia, in relapse	C1532368	Relapsing chronic myeloid leukemia	DISO|Disorders|T191|Neoplastic Process	20260120	0	
+chronic myeloid leukemia, in relapse	C0278787	Recurrent Chronic Myelogenous Leukemia, BCR-ABL1 Positive	DISO|Disorders|T191|Neoplastic Process	20260120	0	Originally mapped to C1532368 from QA but that concept is deprecated in 2025AB
 no message exposure (control condition)	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
 no specific condition feasibility of mobile app	C0497153	No disease	DISO|Disorders|T033|Finding	20260120	0	
 no surgery on the spine or the hamstring	C3846422	No surgical procedure	DISO|Disorders|T033|Finding	20260120	0	
