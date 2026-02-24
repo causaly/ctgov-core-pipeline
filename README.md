@@ -185,8 +185,6 @@ Condition Metamap
    ↓
 Intervention Metamap
    ↓
-COVID Replacement
-   ↓
 Deduplication
    ↓
 Aggregation (Neo4j Prep)
