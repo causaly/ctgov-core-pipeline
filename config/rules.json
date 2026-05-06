@@ -42,17 +42,17 @@
         },
 
         {
-            "xpath": ".//Struct[@Name='ConditionsModule']/List[@Name='ConditionList']Field[@Name='Condition']",
+            "xpath": ".//Struct[@Name='ConditionsModule']/List[@Name='ConditionList']/Field[@Name='Condition']",
             "field": "conditions"
         },
 
         {
-            "xpath": ".//Struct[@Name='ConditionBrowseModule']/List[@Name='ConditionMeshList']Struct[@Name='ConditionMesh']/Field[@Name='ConditionMeshTerm']",
+            "xpath": ".//Struct[@Name='ConditionBrowseModule']/List[@Name='ConditionMeshList']/Struct[@Name='ConditionMesh']/Field[@Name='ConditionMeshTerm']",
             "field": "condition_mesh_terms"
         },
 
         {
-            "xpath": ".//List[@Name='ConditionAncestorList']/Struct[@Name='ConditionAncestor']Field[@Name='ConditionAncestorTerm']",
+            "xpath": ".//List[@Name='ConditionAncestorList']/Struct[@Name='ConditionAncestor']/Field[@Name='ConditionAncestorTerm']",
             "field": "relevant_condition_mesh_terms"
         },
 
@@ -90,12 +90,12 @@
             ]},
 
         {
-            "xpath": ".//Struct[@Name='InterventionBrowseModule']/List[@Name='InterventionMeshList']Struct[@Name='InterventionMesh']/Field[@Name='InterventionMeshTerm']",
+            "xpath": ".//Struct[@Name='InterventionBrowseModule']/List[@Name='InterventionMeshList']/Struct[@Name='InterventionMesh']/Field[@Name='InterventionMeshTerm']",
             "field": "intervention_mesh_terms"
         },
 
         {
-            "xpath": ".//List[@Name='InterventionAncestorList']/Struct[@Name='InterventionAncestor']Field[@Name='InterventionAncestorTerm']",
+            "xpath": ".//List[@Name='InterventionAncestorList']/Struct[@Name='InterventionAncestor']/Field[@Name='InterventionAncestorTerm']",
             "field": "relevant_intervention_mesh_terms"
         },
 
@@ -192,7 +192,7 @@
         },
 
          {
-            "xpath": ".//List[@Name='LocationList']/Struct[@Name='Location']Field[@Name='LocationCountry']",
+            "xpath": ".//List[@Name='LocationList']/Struct[@Name='Location']/Field[@Name='LocationCountry']",
             "field": "location_countries"
         },
 
