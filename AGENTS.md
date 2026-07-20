@@ -1,95 +1,95 @@
 # AGENTS.md
 
-Guidance for AI coding agents working in the **ClinicalTrials.gov core pipeline** repo. Read this before editing.
+Development guide for AI coding agents working in the **ClinicalTrials.gov core pipeline** repo. Read this before editing code.
+
+This file is about **developing** the pipeline. For operating it (VM run procedure, GCS upload, UMLS release updates) see `docs/running-the-pipeline.md` and `docs/umls-update.md` — do not duplicate that here.
 
 ## What this repo is
 
-A batch ETL pipeline that downloads ClinicalTrials.gov XML, maps conditions and interventions to UMLS concepts via MetaMap, aggregates them into a Neo4j evidence schema, scores them for NGS search, and produces text abstracts for indexing. It emits a canonical evidence TSV and a text tarball to GCS for downstream consumers (Neo4j knowledge graph, NGS search).
+A batch ETL pipeline (orchestrated by [`run_ct.sh`](run_ct.sh)) that runs numbered scripts `CT_01`–`CT_11` in sequence. Each step reads the previous step's TSV and writes the next one to `Intermediate_steps/CT_{batch}_{step}.tsv`. The data flows:
 
-The orchestrator is [`run_ct.sh`](run_ct.sh). It runs numbered scripts `CT_01`–`CT_11` sequentially. Entry point: `./run_ct.sh YYYYMMDD`.
+```
+XML → 01 extract → 02 metamap condition → 03 metamap intervention
+   → 05 dedup → 06 aggregate (evidence schema) → 07 NGS score
+   → 08 title tag → 09 mesh (main) / 10 mesh (txt) → 11 text files
+```
 
-Start with [`docs/overview.md`](docs/overview.md). The `docs/` folder is the source of truth for behavior:
-- [`docs/pipeline-steps.md`](docs/pipeline-steps.md) — per-step scripts, inputs, outputs, logic
-- [`docs/running-the-pipeline.md`](docs/running-the-pipeline.md) — VM run procedure, prerequisites, troubleshooting
-- [`docs/umls-update.md`](docs/umls-update.md) — UMLS release update procedure
-- [`docs/outputs-and-downstream.md`](docs/outputs-and-downstream.md) — GCS layout, evidence contract, consumers
+Step 04 is deprecated and not invoked (numbering jumps 03→05). Per-step detail lives in [`docs/pipeline-steps.md`](docs/pipeline-steps.md); the schema/consumer contract is in [`docs/outputs-and-downstream.md`](docs/outputs-and-downstream.md).
 
-**When you change pipeline behavior, update the relevant `docs/` file in the same change.**
+## Environment constraints (affect how you edit and verify)
 
-## Critical constraints (read before running anything)
+- **You cannot run the pipeline here.** It needs the production VM (local MetaMap under `/tools/metamap_2020/...`, UMLS pickles under `/tools/metathesaurus_files/...`, GCS creds, network download). None are in git. Verify changes by static reasoning and syntax checks, not by executing `run_ct.sh`.
+- **Mixed Python runtimes — match the file you edit.** The interpreter is pinned per step in `run_ct.sh` and the `*.sh` wrappers; the `#!/usr/bin/python` shebangs on some files are misleading, so trust the invocation, not the shebang.
 
-- **You cannot run the full pipeline locally.** It requires a production GCP VM (`prd-pipeline-ct-gov`) with a local MetaMap install (`/tools/metamap_2020/...`), UMLS scoring pickles (`/tools/metathesaurus_files/...`), GCS service-account credentials, and network downloads. None of these are in git. Do not attempt to `./run_ct.sh` or start MetaMap servers in this workspace.
-- **The dev host is Windows 11 / PowerShell; the pipeline targets Linux/bash.** `run_ct.sh` and the `.sh` wrappers use `wget`, `unzip`, `netstat`, `gsutil`, `tar`, `rm -rf`. Do not "port" these to PowerShell or "fix" them — they are meant to run on the Linux VM. Treat shell scripts as Linux artifacts.
-- **Mixed Python runtimes.** Steps `01`, `09`, `10`, `11` are **Python 3**. Steps `02`–`08` are **Python 2.7** (invoked as `/usr/bin/python2.7`). Do not modernize the Python 2.7 scripts to Python 3 syntax unless explicitly asked — they run under a real 2.7 interpreter on the VM. Match the existing runtime of whatever file you edit.
-- **Do not commit secrets or large data.** `gcloud_service_account.json`, downloaded XML, `Intermediate_steps/`, `txt-files/`, `*_logs/`, `*.tar.gz`, and generated `*.tsv` outputs must never be committed. Large `*.pkl` mapping files already live in the repo root (`cui2mesh_*.pkl`); do not add new large binaries without being asked.
+  | Runtime | Files | Notes |
+  |---------|-------|-------|
+  | **Python 3 (assume 3.6+)** | `CT_01`, `CT_09`, `CT_10`, `CT_11`, `splitcsvk.py`, most of `misc/` | Use f-strings (`CT_11`, `misc/CT_umls_diff.py`). `splitcsvk.py` runs under py3 even though it feeds the py2.7 metamap steps. |
+  | **Dual 2/3-compatible** | `CT_02`, `CT_03` | Run as `/usr/bin/python2.7`, but written portable: `from __future__ import print_function` + guarded `if sys.version_info[0] < 3: reload(sys); sys.setdefaultencoding(...)`. **Preserve that shim** — don't add hard-2.7-only idioms. |
+  | **Hard Python 2.7** | `CT_05`, `CT_06`, `CT_07`, `CT_08` | Real 2.7 only: unconditional `reload(sys); sys.setdefaultencoding('utf-8')`, `print` statements, `raw_input`, `filter()` returning a list. These crash immediately under py3. |
 
-## Repo layout
+  Do not "modernize" the 2.7 files to Python 3 unless explicitly asked — they run under a real 2.7 interpreter on the VM.
+- **Dev host is Windows/PowerShell; scripts target Linux/bash.** `run_ct.sh` and the `*.sh` wrappers use `wget`, `unzip`, `netstat`, `ps`, `tar`, `gsutil`, `rm -rf`. They only run on the Linux VM — don't port or "fix" them for Windows.
+- **Don't commit secrets or generated data.** `gcloud_service_account.json`, `xml_dumps/`, `Intermediate_steps/`, `txt-files/`, `*_logs/`, `*.tar.gz`, generated `*.tsv`. Large `cui2mesh_*.pkl` files already sit in the repo root; don't add new large binaries unprompted.
+
+## TSV I/O conventions (the #1 source of bugs)
+
+Every step reads and writes tab-separated files with **no quoting**. This is load-bearing — get it wrong and columns silently shift.
+
+- Readers/writers are opened with `delimiter='\t', quoting=csv.QUOTE_NONE, quotechar=''` (`splitcsvk.py` also sets `escapechar='\\'`). Because nothing is quoted, **any literal tab, newline, `\r`, or `"` inside a field corrupts the row.** `CT_01_extraction.py` defends against this by stripping `\n\r\t` and replacing `"`→`'` on every field before writing; preserve that pattern anywhere you emit fields.
+- Every script sets `csv.field_size_limit(58000000)` because some fields (e.g. `content_raw`) are very large. Keep it when adding a new reader.
+- **Missing value is the string `'0'`** (Neo4j requirement), never `''`, `None`, or `NaN`. `XMLParser.default_value` and the aggregation defaults all use `'0'`.
+- Encodings are inconsistent between steps: `CT_09`/`CT_10` read with `encoding='ISO-8859-1'`. Match the surrounding file rather than assuming UTF-8.
+
+## Column contracts (trace these before touching a schema)
+
+Two different addressing styles coexist — know which one a file uses:
+
+- **Positional index** — `CT_06_aggregation.py` reads its 45-column input via hardcoded `src_*_ind = 0..44` constants (top of file) and writes a **121-column** header. If you add/remove/reorder any column in step 01 or 05, these integer indices break silently. Prefer **appending** new columns at the end.
+- **Header name** — `CT_09`/`CT_10` locate columns with `row.index('cause_concept_cui')` etc. These tolerate reordering but break if you rename a column.
+
+Key schema facts (set in `CT_06_aggregation.py`):
+
+- **Cause = intervention, Effect = condition.** `cause_*` fields come from intervention columns; `effect_*` from condition columns. `connective_type='OBSERVATION'`, `sem_type='UNIDIRECTIONAL'`.
+- **Row semantics:** one row per `condition × intervention` pair per trial (2 conditions × 3 interventions → up to 6 rows), produced in `CT_01` and deduped in `CT_05`.
+- **Identity fields:** `data_source='8'`, `article_type='3'`, `article_uuid = {nct_id}_{batch_gen}_{parse_version}`, `primary_id = nct_id`. `batch_gen` and `parse_version` arrive as `sys.argv[3]`/`sys.argv[4]`.
+- **Dedup key:** `CT_06` drops rows on a `source_hashcode` (sha256 of title+nct_id+cuis+names); `CT_05` dedups condition/intervention pairs. Changing the fields that feed the hash changes dedup behavior.
+- The step-01 header intentionally repeats some names (`overall_status`, `source`) at different indices — don't "dedupe" the header.
+
+## Step internals worth knowing
+
+- **`CT_01_extraction.py` (py3):** walks `xml_dumps/`, parses via `utils/xml_parser.py` driven by `config/rules.json` (XPath rules; `plural` rules produce lists). Splits compound intervention names on `' + '` and `' or '`. Emits 45 columns with MetaMap columns pre-initialized to `'0'`; asserts row length matches the header.
+- **`CT_02`/`CT_03` metamap (py2.7):** the `.sh` wrapper splits input into `NUM_PROCS=10` chunks with `splitcsvk.py`, runs up to 10 parallel `python2.7` workers, caches each chunk as a `.pkl` in `metamap_*_cache/`, then merges with `head -1` + `tail -n+2`. The worker takes `input output cache.pkl log.txt`. Allowed semantic categories, CUI blacklist (`utils/Universal_statex_blacklist.xlsx`), score modifiers, and MetaMap `-Z`/`-V` version args are **hardcoded near the top of the worker**. Concept overrides live in `utils/CT_conditions_manual_remaps.tsv` / `utils/CT_interventions_manual_remaps.tsv`.
+- **`CT_06`–`CT_08` (py2.7):** aggregation builds the HTML `content_raw` and the full evidence schema; scoring/tagging append columns. Version-like constants (`data_source`, `parse_version`, weights) are hardcoded here and in `CT_07`.
+- **`CT_09`/`CT_10` (py3):** map `cause`/`effect` CUIs to MeSH via a `cui2mesh_*.pkl` (path passed as `sys.argv[3]`); `09` writes term names into `article_mesh_terms`, `10` writes `MESH_ID#####TERM` pairs. `CT_11` re-reads source XML to build one `{article_uuid}.txt` per trial.
+
+## Gotchas
+
+- **`CT_06_aggregation.py` contains a `raw_input('wait')`** in its empty-field check. If a field is blank it will **block forever** on the VM. If you touch that script, understand this before assuming a hang is something else.
+- **`splitcsvk.py` silently drops rows** whose column count ≠ header (it just increments a counter). Malformed extraction rows disappear here.
+- **No test suite, no CI, no linter config.** Validation is manual. The QA/sanity scripts in `misc/` (`conditions_sanity_check.py`, `interventions_sanity_check.py`, `CT_umls_diff.py`, `find_missing_cui2cat.py`, `CT_stats.py`) are the intended tooling — extend those rather than inventing new ones.
+- **Manual remap TSVs are BIS-curated** (`utils/CT_conditions_manual_remaps.tsv` ~396 rows, `utils/CT_interventions_manual_remaps.tsv` ~4,055 rows). Don't bulk-edit or reformat; they are request-string → CUI overrides with notes.
+
+## Module map
 
 | Path | Role |
 |------|------|
-| `run_ct.sh` | Orchestrator; runs steps 01–11, uploads to GCS, writes stats |
-| `CT_0X_*.py` / `CT_0X_*.sh` | Numbered pipeline steps (see `docs/pipeline-steps.md`) |
-| `CT_04_COVID_replacement.py` | **Deprecated, not in repo, not invoked** — numbering skips 03→05 |
-| `CT_01_extraction_old.py` | Legacy extraction; not used by `run_ct.sh` |
-| `splitcsvk.py` | Splits input into 10 chunks for parallel MetaMap (steps 02/03) |
-| `config/rules.json` | XPath extraction rules for CT.gov XML (step 01) |
-| `utils/` | Parsers, term-mapping dicts, manual remap TSVs, blacklists |
-| `misc/` | Dictionary builders and QA/sanity scripts (UMLS updates, stats, diffs) |
-| `cui2mesh_*.pkl` | CUI→MeSH mapping pickles (steps 09/10) |
-| `umls_statex.xlsx` | Semantic type priorities |
-| `docs/` | Authoritative documentation |
+| `run_ct.sh` | Orchestrator: cleanup → download → steps 01–11 → archive → upload → stats |
+| `CT_0X_*.py` / `CT_0X_*.sh` | Numbered steps (`.sh` wrappers parallelize the metamap steps) |
+| `CT_01_extraction_old.py` | Legacy extraction; **not** used by `run_ct.sh` |
+| `splitcsvk.py` | Splits a TSV into 10 chunks for parallel metamap |
+| `config/rules.json` | XPath extraction rules consumed by `utils/xml_parser.py` |
+| `utils/xml_parser.py` | Generic rule-driven XML field extractor |
+| `utils/querying_mappings.py`, `global_term_mappings.py`, `global_chem_mappings.py`, `prohibited_words.py` | Term normalization / filtering used by metamap steps |
+| `utils/timeout.py` | Timeout decorator for metamap calls |
+| `utils/CT_*_manual_remaps.tsv` | Curated request-string → CUI overrides |
+| `misc/*` | Dictionary builders + QA/sanity/diff/stats scripts |
+| `cui2mesh_*.pkl`, `umls_statex.xlsx` | Data assets loaded at runtime (steps 09/10 and metamap) |
+| `docs/` | Authoritative behavior/ops documentation |
 
-## Data-flow conventions you must preserve
+## Working effectively
 
-These are load-bearing invariants. Breaking them silently corrupts the knowledge graph or breaks the Neo4j import.
-
-- **Column order matters.** Scripts read/write TSVs by positional index in many places, not by header name. If you add, remove, or reorder a column in one step, trace every downstream step (and `docs/outputs-and-downstream.md`) that indexes into it. Prefer appending columns at the end.
-- **Missing value is the string `'0'`.** Neo4j import requires it. Do not use empty string, `None`, or `NaN` for missing fields.
-- **Cause/effect mapping:** intervention → **cause**, condition → **effect** (`connective_type=OBSERVATION`, `sem_type=UNIDIRECTIONAL`). Set in step 06.
-- **Row semantics:** one row per `condition × intervention` pair per trial (2 conditions × 3 interventions → up to 6 rows, after step 05 dedup).
-- **Identity fields:** `data_source=8` (CT.gov), `article_type=3`, `article_uuid = {nct_id}_{batch_gen}_{parse_version}`, `primary_id = NCT{nct_id}`.
-- **Intermediate files** follow `Intermediate_steps/CT_{batch}_{step}.tsv`; the canonical output is `{batch}_ctgov_main.tsv` (a copy of the step-09 TSV).
-
-## Version constants (hardcoded, scattered)
-
-There is no central config for versions — they are hardcoded across files. When bumping a UMLS release, follow [`docs/umls-update.md`](docs/umls-update.md) exactly and update **all** of these:
-
-| Constant | Current | Where |
-|----------|---------|-------|
-| MetaMap UMLS (`-Z`) | `2023AB` | `CT_02_metamap_condition.py`, `CT_03_metamap_intervention.py` |
-| MetaMap custom vocab (`-V`) | `custom2025AB` | same two scripts |
-| Scoring pickle dir | `/tools/metathesaurus_files/2025AB_data/` | `CT_07_ngs_scoring.py` (~line 30) |
-| CUI→MeSH pickle | `cui2mesh_2025AB_merged_2023AB.pkl` | `run_ct.sh` (steps 09/10) |
-| `parse_version` | `0.6` | `run_ct.sh` (passed to step 06) |
-| `data_source` | `8` | `CT_06_aggregation.py` |
-
-## Working effectively as an agent
-
-- **Verify before editing:** these scripts are old and lightly tested. Read the whole target script and its callers/downstream consumers before changing logic. Grep for column indices and the constants above.
-- **No test suite / CI.** There are no automated tests and no local run path. Validate changes by reasoning about column contracts and, where possible, by static checks (syntax, imports) appropriate to the file's Python version. The real validation happens on the VM against a batch; call out that a VM run is needed to confirm.
-- **Sanity/QA scripts** in `misc/` (`conditions_sanity_check.py`, `interventions_sanity_check.py`, `CT_umls_diff.py`, `find_missing_cui2cat.py`, `CT_stats.py`) are the intended validation tooling — reference/extend these rather than inventing new ones.
-- **Manual remaps** (`utils/CT_conditions_manual_remaps.tsv` ~396 rows, `utils/CT_interventions_manual_remaps.tsv` ~4,055 rows) are curated by BIS during UMLS QA. Do not bulk-edit or reformat them; they are request-string → CUI overrides with notes.
-- **Match existing style.** These files predate modern linting; there is no formatter config. Keep edits minimal and consistent with the surrounding file rather than reformatting.
-- **Comments:** only add comments that explain non-obvious intent (e.g. why a column index or a `'0'` default is required). Do not narrate code.
-
-## Common tasks → where to look
-
-| Task | Start here |
-|------|-----------|
-| Add/change an extracted XML field | `config/rules.json` + `utils/xml_parser.py` + `CT_01_extraction.py`, then trace downstream column indices |
-| Adjust concept mapping / allowed semantic types | `CT_02_*` (conditions) / `CT_03_*` (interventions) + `utils/` mappings + manual remap TSVs |
-| Change evidence schema / Neo4j columns | `CT_06_aggregation.py` (121-col schema) + `docs/outputs-and-downstream.md` |
-| Change NGS scoring | `CT_07_ngs_scoring.py` (weights: title=1.0, title-related=0.5, MeSH=0.5, MeSH-related=0.25, conclusion=0.1) |
-| Change MeSH output | `CT_09` (term names) / `CT_10` (`MESH_ID#####TERM`) + cui2mesh pickle |
-| Change text-file output | `CT_11_text_generation.py` |
-| Bump UMLS version | `docs/umls-update.md` (full checklist) |
-| Change run/upload/stats flow | `run_ct.sh` + `docs/running-the-pipeline.md` + `misc/CT_stats.py` |
-
-## Downstream contract (don't break)
-
-Outputs land in `gs://prd-ngs-ctgov/{batch}/`:
-- `{batch}_ctgov_main.tsv` → `neo4j-loading` and `ngs-upload-pipeline` (`evidence_ct`)
-- `{batch}_ctgov_text.tar.gz` → `ngs-upload-pipeline` (`abstracts_nct`)
-- `{batch}_xml_dumps.zip` → modern `ctgov` embeddings pipeline
-
-Changes to the main TSV's columns/semantics are breaking changes for Neo4j and NGS. See [`docs/outputs-and-downstream.md`](docs/outputs-and-downstream.md) before touching the schema.
+- **Read the whole target script and its neighbors first.** Grep for the column name/index and the constant you're changing across all `CT_*` files before editing.
+- **Prefer minimal, in-style edits.** These files predate modern formatting; don't reformat surrounding code.
+- **When you change pipeline behavior, update the matching `docs/` file in the same change.**
+- **Comments:** only for non-obvious intent (e.g. why a column index or a `'0'` default is required). Don't narrate code.
+- Changes to `{batch}_ctgov_main.tsv` columns/semantics are **breaking** for the Neo4j and NGS consumers — see [`docs/outputs-and-downstream.md`](docs/outputs-and-downstream.md) before touching the schema.
