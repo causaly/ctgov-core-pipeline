@@ -163,7 +163,7 @@ Previously replaced COVID-19 strings in cause/effect fields. Removed from the pi
 | `article_uuid` | `{nct_id}_{batch_gen}_{parse_version}` | Unique trial batch ID |
 | `batch_generation` | `{batch_gen}` | Release batch date |
 | `parse_version` | `0.6` | Pipeline code version |
-| `primary_id` | `NCT{nct_id}` | Trial identifier |
+| `primary_id` | `{nct_id}` | Trial identifier (already `NCT…`-prefixed) |
 
 Default missing value throughout: `'0'` (Neo4j requirement).
 

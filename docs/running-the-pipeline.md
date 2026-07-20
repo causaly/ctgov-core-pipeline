@@ -14,9 +14,9 @@ The pipeline runs on a dedicated GCP VM with locally installed MetaMap and UMLS 
 
 | Requirement | Location / detail |
 |-------------|-------------------|
-| **VM** | `prd-pipeline-ct-gov` (`us-east1-b`, project `causaly-prd-pipeline`, IP `10.51.1.23`) |
+| **VM** | `prd-pipeline-ct-gov` (`us-east1-b`, project `causaly-prd-pipeline`, IP `<vm-internal-ip>`) |
 | **SSH** | Via `gcp-util-bastion-prd` (ProxyJump) |
-| **Repo** | `/home/m.kyriakakis/ctgov-core-pipeline` (or equivalent checkout) |
+| **Repo** | `~/ctgov-core-pipeline` (checkout in the VM user's home dir) |
 | **MetaMap** | `/tools/metamap_2020/public_mm/bin/metamap` |
 | **MetaMap UMLS** | `-Z 2023AB` |
 | **MetaMap custom vocab** | `-V custom2025AB` |

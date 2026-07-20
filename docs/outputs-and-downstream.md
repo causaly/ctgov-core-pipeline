@@ -31,7 +31,7 @@ The main output file. **125 columns total:** 121 from step 06 aggregation, plus 
 | `data_source` | `8` | ClinicalTrials.gov source ID in Causaly's data source registry |
 | `article_type` | `3` | Clinical trial article type |
 | `article_uuid` | `{nct_id}_{batch_gen}_{parse_version}` | Unique trial batch identifier |
-| `primary_id` | `NCT{nct_id}` | ClinicalTrials.gov trial ID |
+| `primary_id` | `{nct_id}` | ClinicalTrials.gov trial ID (already `NCT…`-prefixed) |
 | `connective_type` | `OBSERVATION` | Evidence relationship type |
 | `sem_type` | `UNIDIRECTIONAL` | Cause→effect directionality |
 | `cause_*` | intervention fields | Intervention mapped as **cause** |
