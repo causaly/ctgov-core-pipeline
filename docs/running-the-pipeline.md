@@ -25,7 +25,7 @@ The pipeline runs on a dedicated GCP VM with locally installed MetaMap and UMLS 
 | **Semantic type config** | `umls_statex.xlsx` (repo root) |
 | **CUI blacklist** | `utils/Universal_statex_blacklist.xlsx` |
 | **GCS credentials** | `gcloud_service_account.json` (repo root, gitignored) |
-| **Python** | Python 3 (steps 01, 09–11) + Python 2.7 (steps 02–08) |
+| **Python** | Python 3 (steps 01, 09–11; `splitcsvk.py` in steps 02–03) + Python 2.7 (metamap workers in 02–03; steps 05–08) |
 | **Spacy model** | `en_core_web_sm` (MetaMap preprocessing) |
 
 ### GCP console links
@@ -140,7 +140,7 @@ Verify with `netstat -tulpn | grep -E '1795|5554'`.
 
 ### Step 07 (NGS scoring) stalls
 
-Usually caused by missing CUIs in the `cui_to_cat` dictionary. Run [`misc/find_missing_cui2cat.py`](../misc/find_missing_cui2cat.py) against the step 03 output and patch `missing_cuis_dict` in [`misc/cui_to_cat_dict_build.py`](../misc/cui_to_cat_dict_build.py). See [umls-update.md](umls-update.md).
+Usually caused by missing CUIs in the `cui_to_cat` dictionary. Run [`misc/find_missing_cui2cat.py`](../misc/find_missing_cui2cat.py) against the step-06 TSV and patch `missing_cuis_dict` in [`misc/cui_to_cat_dict_build.py`](../misc/cui_to_cat_dict_build.py). See [umls-update.md](umls-update.md).
 
 ### GCS upload fails
 

@@ -12,8 +12,8 @@ Step-by-step reference for each stage of the ClinicalTrials.gov core pipeline. T
 |------|--------|--------|-----------|------------|
 | 0 | `run_ct.sh` (download) | bash | — | `xml_dumps/` |
 | 01 | `CT_01_extraction.py` | 3 | XML folders | `CT_{batch}_01.tsv` |
-| 02 | `CT_02_metamap_condition.sh` → `.py` | 2.7 | `_01` | `CT_{batch}_02.tsv` |
-| 03 | `CT_03_metamap_intervention.sh` → `.py` | 2.7 | `_02` | `CT_{batch}_03.tsv` |
+| 02 | `CT_02_metamap_condition.sh` → `.py` | 3 + 2.7 | `_01` | `CT_{batch}_02.tsv` |
+| 03 | `CT_03_metamap_intervention.sh` → `.py` | 3 + 2.7 | `_02` | `CT_{batch}_03.tsv` |
 | 04 | *(deprecated, not run)* | — | — | — |
 | 05 | `CT_05_deduplication.py` | 2.7 | `_03` | `CT_{batch}_05.tsv` |
 | 06 | `CT_06_aggregation.py` | 2.7 | `_05` | `CT_{batch}_06.tsv` |
@@ -54,7 +54,7 @@ Step 04 (`CT_04_COVID_replacement.py`) is deprecated and not invoked by `run_ct.
 - Walks all XML files under `xml_dumps/`
 - Extracts predefined fields via XPath rules in `config/rules.json`
 - Expands each trial to **one row per condition × intervention pair** (or condition-only / intervention-only when one side is missing)
-- Splits compound intervention names on `+` and `or`
+- Splits compound intervention names on `' + '` and `' or '`
 - Initializes MetaMap columns to `'0'` (Neo4j default for missing values)
 
 **Example:** 2 conditions × 3 interventions → 6 rows for one NCT ID.
@@ -69,7 +69,7 @@ Step 04 (`CT_04_COVID_replacement.py`) is deprecated and not invoked by `run_ct.
 |---|---|
 | **Wrapper** | [`CT_02_metamap_condition.sh`](../CT_02_metamap_condition.sh) |
 | **Worker** | [`CT_02_metamap_condition.py`](../CT_02_metamap_condition.py) |
-| **Python** | 2.7 |
+| **Python** | 3 (`splitcsvk.py`) + 2.7 (worker) |
 | **Invocation** | `bash CT_02_metamap_condition.sh <input> <output>` |
 
 **Parallelism:** Splits input into 10 chunks via [`splitcsvk.py`](../splitcsvk.py); runs up to 10 parallel worker processes; merges chunk TSVs. Per-chunk pickle caches in `metamap_conditions_cache/`.
@@ -86,7 +86,7 @@ Step 04 (`CT_04_COVID_replacement.py`) is deprecated and not invoked by `run_ct.
 - `get_best_record()` picks highest-priority allowed semantic type from MetaMap XML response
 - `heuristic_fixes()` applies post-processing rules
 - Manual overrides: [`utils/CT_conditions_manual_remaps.tsv`](../utils/CT_conditions_manual_remaps.tsv)
-- Blacklisted CUIs: [`utils/Universal_statex_blacklist.xlsx`](../utils/Universal_statex_blacklist.xlsx) + [`utils/blacklisted_cuis.py`](../utils/blacklisted_cuis.py)
+- Blacklisted CUIs: [`utils/Universal_statex_blacklist.xlsx`](../utils/Universal_statex_blacklist.xlsx), loaded inline in the worker script
 - Term normalization: [`utils/querying_mappings.py`](../utils/querying_mappings.py), [`utils/global_term_mappings.py`](../utils/global_term_mappings.py)
 
 **Fills columns:** `condition_concept`, `condition_cui`, `condition_categories`, `condition_all_mm`
@@ -99,7 +99,7 @@ Step 04 (`CT_04_COVID_replacement.py`) is deprecated and not invoked by `run_ct.
 |---|---|
 | **Wrapper** | [`CT_03_metamap_intervention.sh`](../CT_03_metamap_intervention.sh) |
 | **Worker** | [`CT_03_metamap_intervention.py`](../CT_03_metamap_intervention.py) |
-| **Python** | 2.7 |
+| **Python** | 3 (`splitcsvk.py`) + 2.7 (worker) |
 | **Invocation** | `bash CT_03_metamap_intervention.sh <input> <output>` |
 
 Same 10-chunk parallel pattern as step 02. Caches in `metamap_interventions_cache/`.
@@ -182,7 +182,7 @@ Default missing value throughout: `'0'` (Neo4j requirement).
 - `2025AB_parents.pkl2` / `2025AB_children.pkl2` — MRREL hierarchy
 - `2025AB_cui_to_cat.pkl2` — MRSTY semantic categories
 
-**What:** Scores concept presence in article title, MeSH terms, and conclusion/discussion using UMLS atoms and parent/child hierarchy. Tags concepts in titles as `<concept cui=... cat=...>`.
+**What:** Scores concept presence in article title and MeSH terms using UMLS atoms and parent/child hierarchy. Tags concepts in titles as `<concept cui=... cat=...>`. Adds a flat `+0.1` bonus when `article_section` is `Results/Findings` or `Conclusion/Discussion` (not atom matching on conclusion text).
 
 **Adds columns:** `ngs_score`, `article_title_evidence_tag`, `final_ngs_score`
 
@@ -265,6 +265,6 @@ Default missing value throughout: `'0'` (Neo4j requirement).
 | [`config/rules.json`](../config/rules.json) | XPath extraction rules for CT.gov XML |
 | [`utils/CT_conditions_manual_remaps.tsv`](../utils/CT_conditions_manual_remaps.tsv) | Manual condition string→CUI overrides |
 | [`utils/CT_interventions_manual_remaps.tsv`](../utils/CT_interventions_manual_remaps.tsv) | Manual intervention string→CUI overrides |
-| `umls_statex.xlsx` | Semantic type priorities (VM-side, not in git) |
-| `utils/Universal_statex_blacklist.xlsx` | CUI blacklist (VM-side, not in git) |
+| `umls_statex.xlsx` | Semantic type priorities (repo root) |
+| `utils/Universal_statex_blacklist.xlsx` | CUI blacklist (repo root) |
 | `cui2mesh_2025AB_merged_2023AB.pkl` | CUI→MeSH mapping (repo root on VM) |

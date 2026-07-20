@@ -16,10 +16,10 @@ XML → 01 extract → 02 metamap condition → 03 metamap intervention
 
 Step 04 is deprecated and not invoked (numbering jumps 03→05). Per-step detail lives in [`docs/pipeline-steps.md`](docs/pipeline-steps.md); the schema/consumer contract is in [`docs/outputs-and-downstream.md`](docs/outputs-and-downstream.md).
 
-## Environment constraints (affect how you edit and verify)
+## Development constraints
 
-- **You cannot run the pipeline here.** It needs the production VM (local MetaMap under `/tools/metamap_2020/...`, UMLS pickles under `/tools/metathesaurus_files/...`, GCS creds, network download). None are in git. Verify changes by static reasoning and syntax checks, not by executing `run_ct.sh`.
-- **Mixed Python runtimes — match the file you edit.** The interpreter is pinned per step in `run_ct.sh` and the `*.sh` wrappers; the `#!/usr/bin/python` shebangs on some files are misleading, so trust the invocation, not the shebang.
+- **Do not run the pipeline locally.** Its production-only dependencies are not in git; verify changes with static reasoning and syntax checks.
+- **Mixed Python runtimes — trust `run_ct.sh` and the `*.sh` wrappers, not `#!/usr/bin/python` shebangs.** Do not modernize Python 2 code unless explicitly asked.
 
   | Runtime | Files | Notes |
   |---------|-------|-------|
@@ -27,15 +27,12 @@ Step 04 is deprecated and not invoked (numbering jumps 03→05). Per-step detail
   | **Dual 2/3-compatible** | `CT_02`, `CT_03` | Run as `/usr/bin/python2.7`, but written portable: `from __future__ import print_function` + guarded `if sys.version_info[0] < 3: reload(sys); sys.setdefaultencoding(...)`. **Preserve that shim** — don't add hard-2.7-only idioms. |
   | **Hard Python 2.7** | `CT_05`, `CT_06`, `CT_07`, `CT_08` | Real 2.7 only: unconditional `reload(sys); sys.setdefaultencoding('utf-8')`, `print` statements, `raw_input`, `filter()` returning a list. These crash immediately under py3. |
 
-  Do not "modernize" the 2.7 files to Python 3 unless explicitly asked — they run under a real 2.7 interpreter on the VM.
 - **Dev host is Windows/PowerShell; scripts target Linux/bash.** `run_ct.sh` and the `*.sh` wrappers use `wget`, `unzip`, `netstat`, `ps`, `tar`, `gsutil`, `rm -rf`. They only run on the Linux VM — don't port or "fix" them for Windows.
 - **Don't commit secrets or generated data.** `gcloud_service_account.json`, `xml_dumps/`, `Intermediate_steps/`, `txt-files/`, `*_logs/`, `*.tar.gz`, generated `*.tsv`. Large `cui2mesh_*.pkl` files already sit in the repo root; don't add new large binaries unprompted.
 
 ## TSV I/O conventions (the #1 source of bugs)
 
-Every step reads and writes tab-separated files with **no quoting**. This is load-bearing — get it wrong and columns silently shift.
-
-- Readers/writers are opened with `delimiter='\t', quoting=csv.QUOTE_NONE, quotechar=''` (`splitcsvk.py` also sets `escapechar='\\'`). Because nothing is quoted, **any literal tab, newline, `\r`, or `"` inside a field corrupts the row.** `CT_01_extraction.py` defends against this by stripping `\n\r\t` and replacing `"`→`'` on every field before writing; preserve that pattern anywhere you emit fields.
+- Readers/writers use tab separators with no quoting: `delimiter='\t', quoting=csv.QUOTE_NONE, quotechar=''` (`splitcsvk.py` also sets `escapechar='\\'`). **Any literal tab, newline, `\r`, or `"` corrupts the row.** Preserve `CT_01_extraction.py`'s field sanitization (`\n\r\t` removal and `"`→`'`) when emitting fields.
 - Pipeline steps and most `misc/` readers set `csv.field_size_limit(58000000)` because some fields (e.g. `content_raw`) are very large. Keep it when adding a new reader.
 - **Missing value is the string `'0'`** (Neo4j requirement), never `''`, `None`, or `NaN`. `XMLParser.default_value` and the aggregation defaults all use `'0'`.
 - Encodings are inconsistent between steps: `CT_09`/`CT_10` read with `encoding='ISO-8859-1'`. Match the surrounding file rather than assuming UTF-8.
@@ -55,11 +52,11 @@ Key schema facts (set in `CT_06_aggregation.py`):
 - **Dedup key:** `CT_06` drops rows on a `source_hashcode` (sha256 of `article_hashcode + nct_id + intervention_cui + condition_cui + intervention_name + condition`, lowercased with spaces removed); `CT_05` dedups condition/intervention pairs. Changing the fields that feed the hash changes dedup behavior.
 - The step-01 header intentionally repeats some names (`overall_status`, `source`) at different indices — don't "dedupe" the header.
 
-## Step internals worth knowing
+## Key implementation details
 
-- **`CT_01_extraction.py` (py3):** walks `xml_dumps/`, parses via `utils/xml_parser.py` driven by `config/rules.json` (XPath rules; `plural` rules produce lists). Splits compound intervention names on `' + '` and `' or '`. Emits 45 columns with MetaMap columns pre-initialized to `'0'`; asserts row length matches the header.
-- **`CT_02`/`CT_03` metamap (py2.7):** the `.sh` wrapper splits input into `NUM_PROCS=10` chunks with `splitcsvk.py`, runs up to 10 parallel `python2.7` workers, caches each chunk as a `.pkl` in `metamap_*_cache/`, then merges with `head -1` + `tail -n+2`. The worker takes `input output cache.pkl log.txt`. Allowed semantic categories, CUI blacklist (`utils/Universal_statex_blacklist.xlsx`), score modifiers, and MetaMap `-Z`/`-V` version args are **hardcoded near the top of the worker**. Concept overrides live in `utils/CT_conditions_manual_remaps.tsv` / `utils/CT_interventions_manual_remaps.tsv`.
-- **`CT_06`–`CT_08` (py2.7):** aggregation builds the HTML `content_raw` and the full evidence schema; scoring/tagging append columns. Version-like constants (`data_source`, `parse_version`, weights) are hardcoded here and in `CT_07`.
+- **`CT_01_extraction.py` (py3):** parses XML using `utils/xml_parser.py` and XPath rules in `config/rules.json`; `plural` rules produce lists. It splits compound intervention names on `' + '` and `' or '`.
+- **`CT_02`/`CT_03` metamap:** wrappers split input into 10 chunks, run workers in parallel, cache per-chunk results as `.pkl`, then merge outputs. Workers accept `input output cache.pkl log.txt`; overrides live in `utils/CT_conditions_manual_remaps.tsv` and `utils/CT_interventions_manual_remaps.tsv`.
+- **`CT_06`–`CT_08` (py2.7):** aggregation builds HTML `content_raw` and the evidence schema; scoring/tagging append columns.
 - **`CT_09`/`CT_10` (py3):** map `cause`/`effect` CUIs to MeSH via a `cui2mesh_*.pkl` (path passed as `sys.argv[3]`); `09` writes term names into `article_mesh_terms`, `10` writes `MESH_ID#####TERM` pairs. `CT_11` re-reads source XML to build one `{article_uuid}.txt` per trial.
 
 ## Gotchas
@@ -69,15 +66,11 @@ Key schema facts (set in `CT_06_aggregation.py`):
 - **No test suite, no CI, no linter config.** Validation is manual. The QA/sanity scripts in `misc/` (`conditions_sanity_check.py`, `interventions_sanity_check.py`, `CT_umls_diff.py`, `find_missing_cui2cat.py`, `CT_stats.py`) are the intended tooling — extend those rather than inventing new ones.
 - **Manual remap TSVs are BIS-curated** (`utils/CT_conditions_manual_remaps.tsv` ~396 rows, `utils/CT_interventions_manual_remaps.tsv` ~4,055 rows). Don't bulk-edit or reformat; they are request-string → CUI overrides with notes.
 
-## Module map
+## Supporting modules
 
 | Path | Role |
 |------|------|
-| `run_ct.sh` | Orchestrator: cleanup → download → steps 01–11 → archive → upload → stats |
-| `CT_0X_*.py` / `CT_0X_*.sh` | Numbered steps (`.sh` wrappers parallelize the metamap steps) |
 | `CT_01_extraction_old.py` | Legacy extraction; **not** used by `run_ct.sh` |
-| `splitcsvk.py` | Splits a TSV into 10 chunks for parallel metamap |
-| `config/rules.json` | XPath extraction rules consumed by `utils/xml_parser.py` |
 | `utils/xml_parser.py` | Generic rule-driven XML field extractor |
 | `utils/querying_mappings.py`, `global_term_mappings.py`, `global_chem_mappings.py`, `prohibited_words.py` | Term normalization / filtering used by metamap steps |
 | `utils/timeout.py` | Timeout decorator for metamap calls |

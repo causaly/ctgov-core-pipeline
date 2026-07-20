@@ -41,7 +41,7 @@ Current values: `-Z 2023AB -V custom2025AB`
 Run [`misc/CT_umls_diff.py`](../misc/CT_umls_diff.py) with the old and new step-03 outputs:
 
 ```bash
-python misc/CT_umls_diff.py <old_step03.tsv> <new_step03.tsv> <output.xlsx>
+python3 misc/CT_umls_diff.py <old_step03.tsv> <new_step03.tsv> <output.xlsx>
 ```
 
 Produces an Excel file with two sheets:
@@ -99,17 +99,17 @@ Input: new UMLS `MRREL.RRF` file. Extracts `par`, `chd`, `rb`, `rn` relationship
 ### 2.3 CUI-to-category dictionary
 
 ```bash
-python misc/cui_to_cat_dict_build.py <MRSTY.RRF> utils/Universal_statex_blacklist.xlsx <output_path>/<version>_cui_to_cat.pkl
+python misc/cui_to_cat_dict_build.py <MRSTY.RRF> umls_statex.xlsx <output_path>/<version>_cui_to_cat.pkl
 ```
 
-Input: new UMLS `MRSTY.RRF` + semantic type blacklist spreadsheet.
+Input: new UMLS `MRSTY.RRF` + `umls_statex.xlsx` (repo root; the script reads the `sem_groups` sheet).
 
 ### 2.4 Verify no missing CUIs
 
-Run [`misc/find_missing_cui2cat.py`](../misc/find_missing_cui2cat.py) against the new UMLS step-03 output:
+Run [`misc/find_missing_cui2cat.py`](../misc/find_missing_cui2cat.py) against a step-06 TSV (after aggregation creates `cause_concept_cui` / `effect_concept_cui`):
 
 ```bash
-python misc/find_missing_cui2cat.py <new_step03.tsv>
+/usr/bin/python2.7 misc/find_missing_cui2cat.py <new_step06.tsv>
 ```
 
 Update lines 11 and 13 of the script to point to your new `cui_to_cat.pkl2` file.
