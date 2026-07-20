@@ -36,7 +36,7 @@ Step 04 is deprecated and not invoked (numbering jumps 03→05). Per-step detail
 Every step reads and writes tab-separated files with **no quoting**. This is load-bearing — get it wrong and columns silently shift.
 
 - Readers/writers are opened with `delimiter='\t', quoting=csv.QUOTE_NONE, quotechar=''` (`splitcsvk.py` also sets `escapechar='\\'`). Because nothing is quoted, **any literal tab, newline, `\r`, or `"` inside a field corrupts the row.** `CT_01_extraction.py` defends against this by stripping `\n\r\t` and replacing `"`→`'` on every field before writing; preserve that pattern anywhere you emit fields.
-- Every script sets `csv.field_size_limit(58000000)` because some fields (e.g. `content_raw`) are very large. Keep it when adding a new reader.
+- Pipeline steps and most `misc/` readers set `csv.field_size_limit(58000000)` because some fields (e.g. `content_raw`) are very large. Keep it when adding a new reader.
 - **Missing value is the string `'0'`** (Neo4j requirement), never `''`, `None`, or `NaN`. `XMLParser.default_value` and the aggregation defaults all use `'0'`.
 - Encodings are inconsistent between steps: `CT_09`/`CT_10` read with `encoding='ISO-8859-1'`. Match the surrounding file rather than assuming UTF-8.
 
@@ -52,7 +52,7 @@ Key schema facts (set in `CT_06_aggregation.py`):
 - **Cause = intervention, Effect = condition.** `cause_*` fields come from intervention columns; `effect_*` from condition columns. `connective_type='OBSERVATION'`, `sem_type='UNIDIRECTIONAL'`.
 - **Row semantics:** one row per `condition × intervention` pair per trial (2 conditions × 3 interventions → up to 6 rows), produced in `CT_01` and deduped in `CT_05`.
 - **Identity fields:** `data_source='8'`, `article_type='3'`, `article_uuid = {nct_id}_{batch_gen}_{parse_version}`, `primary_id = nct_id`. `batch_gen` and `parse_version` arrive as `sys.argv[3]`/`sys.argv[4]`.
-- **Dedup key:** `CT_06` drops rows on a `source_hashcode` (sha256 of title+nct_id+cuis+names); `CT_05` dedups condition/intervention pairs. Changing the fields that feed the hash changes dedup behavior.
+- **Dedup key:** `CT_06` drops rows on a `source_hashcode` (sha256 of `article_hashcode + nct_id + intervention_cui + condition_cui + intervention_name + condition`, lowercased with spaces removed); `CT_05` dedups condition/intervention pairs. Changing the fields that feed the hash changes dedup behavior.
 - The step-01 header intentionally repeats some names (`overall_status`, `source`) at different indices — don't "dedupe" the header.
 
 ## Step internals worth knowing
@@ -64,7 +64,7 @@ Key schema facts (set in `CT_06_aggregation.py`):
 
 ## Gotchas
 
-- **`CT_06_aggregation.py` contains a `raw_input('wait')`** in its empty-field check. If a field is blank it will **block forever** on the VM. If you touch that script, understand this before assuming a hang is something else.
+- **`CT_06_aggregation.py` and `CT_08_title_tagging_agg.py` contain `raw_input('wait')`** in empty-field checks. If a field is blank they will **block forever** on the VM. If you touch those scripts, understand this before assuming a hang is something else.
 - **`splitcsvk.py` silently drops rows** whose column count ≠ header (it just increments a counter). Malformed extraction rows disappear here.
 - **No test suite, no CI, no linter config.** Validation is manual. The QA/sanity scripts in `misc/` (`conditions_sanity_check.py`, `interventions_sanity_check.py`, `CT_umls_diff.py`, `find_missing_cui2cat.py`, `CT_stats.py`) are the intended tooling — extend those rather than inventing new ones.
 - **Manual remap TSVs are BIS-curated** (`utils/CT_conditions_manual_remaps.tsv` ~396 rows, `utils/CT_interventions_manual_remaps.tsv` ~4,055 rows). Don't bulk-edit or reformat; they are request-string → CUI overrides with notes.

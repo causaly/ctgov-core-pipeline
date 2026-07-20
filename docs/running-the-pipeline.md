@@ -43,20 +43,26 @@ Start `prd-pipeline-ct-gov` from the [GCP console](https://console.cloud.google.
 
 ### 2. SSH into the VM
 
-```bash
-#Host prd-pipeline-ct-gov
-#  IdentityFile  ~/.ssh/prk_l.ppk
-#  User tigran.b
-#  Hostname 10.51.1.23
-#  ProxyCommand ssh -W %h:%p tigran.b@gcp-util-bastion-prd
+Configure a host alias in your local `~/.ssh/config` (values are environment-specific):
 
+```bash
+# Host prd-pipeline-ct-gov
+#   User <your-user>
+#   Hostname <vm-internal-ip>
+#   IdentityFile ~/.ssh/<your-key>
+#   ProxyCommand ssh -W %h:%p <your-user>@gcp-util-bastion-prd
+```
+
+Then connect:
+
+```bash
 ssh prd-pipeline-ct-gov
 ```
 
 ### 3. Navigate to the repo
 
 ```bash
-cd /home/m.kyriakakis/ctgov-core-pipeline
+cd ~/ctgov-core-pipeline
 ```
 
 ### 4. Start a screen session
