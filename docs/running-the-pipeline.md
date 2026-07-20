@@ -44,7 +44,13 @@ Start `prd-pipeline-ct-gov` from the [GCP console](https://console.cloud.google.
 ### 2. SSH into the VM
 
 ```bash
-ssh -J gcp-util-bastion-prd m.kyriakakis@10.51.1.23
+#Host prd-pipeline-ct-gov
+#  IdentityFile  ~/.ssh/prk_l.ppk
+#  User tigran.b
+#  Hostname 10.51.1.23
+#  ProxyCommand ssh -W %h:%p tigran.b@gcp-util-bastion-prd
+
+ssh prd-pipeline-ct-gov
 ```
 
 ### 3. Navigate to the repo
