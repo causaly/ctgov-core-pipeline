@@ -22,7 +22,7 @@ Upload is performed by `run_ct.sh` using `gcloud_service_account.json`.
 
 ## `{batch}_ctgov_main.tsv` — evidence contract
 
-The main output file. 121 base columns (from step 06 aggregation) plus scoring/tagging/MeSH columns from steps 07–09.
+The main output file. **125 columns total:** 121 from step 06 aggregation, plus `ngs_score`, `article_title_evidence_tag`, and `final_ngs_score` from step 07, plus `final_aggregated_title_tagged` from step 08. Step 09 fills the existing `article_mesh_terms` column (created in step 06) rather than appending new columns.
 
 ### Key fields
 
@@ -31,7 +31,7 @@ The main output file. 121 base columns (from step 06 aggregation) plus scoring/t
 | `data_source` | `8` | ClinicalTrials.gov source ID in Causaly's data source registry |
 | `article_type` | `3` | Clinical trial article type |
 | `article_uuid` | `{nct_id}_{batch_gen}_{parse_version}` | Unique trial batch identifier |
-| `primary_id` | `NCT{nct_id}` | ClinicalTrials.gov trial ID |
+| `primary_id` | `{nct_id}` | ClinicalTrials.gov trial ID (already `NCT…`-prefixed) |
 | `connective_type` | `OBSERVATION` | Evidence relationship type |
 | `sem_type` | `UNIDIRECTIONAL` | Cause→effect directionality |
 | `cause_*` | intervention fields | Intervention mapped as **cause** |
@@ -109,7 +109,7 @@ After each pipeline run, update the [CTgov run log](https://causaly.atlassian.ne
 ### Stats file generation
 
 `run_ct.sh` creates `{batch}_stats.txt` by:
-1. Appending the last 4 lines of the step 01 extraction log (trial count from XML parsing)
+1. Appending the last 4 lines of the step 01 extraction log (includes `Articles with neither condition nor intervention`)
 2. Running [`misc/CT_stats.py`](../misc/CT_stats.py) on `{batch}_ctgov_main.tsv`
 
 ### Column meanings
@@ -118,17 +118,17 @@ After each pipeline run, update the [CTgov run log](https://causaly.atlassian.ne
 |---------------------|--------------------------------|---------|
 | **Release** | Manual | Batch date (`YYYYMMDD`) — the `batch_gen` value |
 | **Delta of loaded trials** | Manual | New trials since previous release (compare `Number of uploaded documents` across runs) |
-| **Number of not uploaded documents** | `Number relationships with non recognized entities` | Trials where neither condition nor intervention was mapped to a UMLS concept |
+| **Number of not uploaded documents** | `Articles with neither condition nor intervention` (from step 01 log tail in stats file) | Trials with no extractable condition and no extractable intervention |
 | **Number of uploaded documents** | `Number of uploaded documents` | Unique `article_uuid` count (one per trial) |
 | **Total number of rows** | `Total number of rows` | Total evidence rows in main TSV |
 | **Number of extracted relationships** | `Number of extracted relationships (i.e., with both interventions and indications)` | Rows with both cause and effect CUIs recognized |
-| **Number relationships with non recognized entities** | Same as above | Neither cause nor effect mapped |
+| **Number relationships with non recognized entities** | `Number relationships with non recognized entities` | Rows where neither cause nor effect CUI is mapped |
 | **Number relationships with recognized Intervention only** | `Number relationships with recognized Intervention only` | Only cause (intervention) CUI mapped |
 | **Number relationships with recognized Indication only** | `Number relationships with recognized Indication only` | Only effect (condition) CUI mapped |
 | **Number of unique recognized entities (Interventions)** | `Number of unique recognized entities (Interventions)` | Distinct intervention CUIs |
 | **Number of unique recognized entities (Indications)** | `Number of unique recognized entities (Indications)` | Distinct condition CUIs |
 | **Documents processing Errors** | Manual | Usually `0` unless extraction errors occurred |
-| **Version** | Manual | Format: `{cutoff_date}::{UMLS_version}::{code_version}` e.g. `20260521::2023AB_custom2025AB::v1.0.1` |
+| **Version** | Manual | Format: `{cutoff_date}::{UMLS_version}::{code_version}` e.g. `20260521::2023AB_custom2025AB::v1.0.1`. The run-log code version is maintained separately from pipeline `parse_version` (`0.6` in `run_ct.sh`).
 
 ### Update procedure (each release)
 
@@ -137,4 +137,4 @@ After each pipeline run, update the [CTgov run log](https://causaly.atlassian.ne
 3. Add a new row to the [CTgov run log](https://causaly.atlassian.net/wiki/spaces/DaST/pages/409698422) table
 4. Fill in stats columns from the stats file
 5. Compute delta of loaded trials vs previous release's "Number of uploaded documents"
-6. Set the Version column: `{batch_gen}::{MetaMap_UMLS}_{custom_vocab}::v{parse_version}.0` (e.g. `20260521::2023AB_custom2025AB::v1.0.1`)
+6. Set the Version column manually using the Confluence convention (e.g. `20260521::2023AB_custom2025AB::v1.0.1`). Do not derive it from `parse_version`.

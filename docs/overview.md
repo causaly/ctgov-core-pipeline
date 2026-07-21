@@ -38,7 +38,7 @@ flowchart TD
     TAR --> GCS
 ```
 
-Steps 01, 09–11 use Python 3. Steps 02–08 use Python 2.7. Step 04 (COVID replacement) is deprecated and not run.
+Steps 01, 09–11 use Python 3. Steps 02–03 use Python 3 for `splitcsvk.py` and Python 2.7 for metamap workers. Steps 05–08 use Python 2.7. Step 04 (COVID replacement) is deprecated and not run.
 
 ---
 
