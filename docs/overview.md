@@ -89,7 +89,7 @@ See [outputs-and-downstream.md](outputs-and-downstream.md) for the full output c
 ## Quick Start (on VM)
 
 ```bash
-cd ~/ctgov-core-pipeline
+cd /home/m.kyriakakis/ctgov-core-pipeline
 screen -S CT
 chmod +x run_ct.sh
 ./run_ct.sh 20260517

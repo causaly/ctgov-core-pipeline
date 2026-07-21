@@ -16,7 +16,7 @@ The pipeline runs on a dedicated GCP VM with locally installed MetaMap and UMLS 
 |-------------|-------------------|
 | **VM** | `prd-pipeline-ct-gov` (`us-east1-b`, project `causaly-prd-pipeline`, IP `<vm-internal-ip>`) |
 | **SSH** | Via `gcp-util-bastion-prd` (ProxyJump) |
-| **Repo** | `~/ctgov-core-pipeline` (checkout in the VM user's home dir) |
+| **Repo** | `/home/m.kyriakakis/ctgov-core-pipeline` |
 | **MetaMap** | `/tools/metamap_2020/public_mm/bin/metamap` |
 | **MetaMap UMLS** | `-Z 2023AB` |
 | **MetaMap custom vocab** | `-V custom2025AB` |
@@ -62,7 +62,7 @@ ssh prd-pipeline-ct-gov
 ### 3. Navigate to the repo
 
 ```bash
-cd ~/ctgov-core-pipeline
+cd /home/m.kyriakakis/ctgov-core-pipeline
 ```
 
 ### 4. Start a screen session
