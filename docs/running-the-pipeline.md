@@ -62,6 +62,7 @@ ssh prd-pipeline-ct-gov
 ### 3. Navigate to the repo
 
 ```bash
+sudo su m.kyriakakis
 cd /home/m.kyriakakis/ctgov-core-pipeline
 ```
 
